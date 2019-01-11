@@ -1,1 +1,1 @@
-Name: Joseph Shin    ONID: shinjos
+Name: Joseph Shin   ONID: shinjos
