@@ -1357,14 +1357,16 @@ int adventurerEffect(int currentPlayer, struct gameState* state, int handPos) {
       drawntreasure++;
     } else {
       // if drawn card is not a treasure, remove it from hand and save it to discard later
-      temphand[z++] = cardDrawn;
+      temphand[z] = cardDrawn;
       state->handCount[currentPlayer]--;
+      z++;
     }
   }
 
   // remove all non-treasure cards drawn
-  while (z > 0) {
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[--z];
+  while (z-1 >= 0) {
+    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z-1];
+    z = z - 1;
   }
 
   // TODO: discard played adventurer card??
