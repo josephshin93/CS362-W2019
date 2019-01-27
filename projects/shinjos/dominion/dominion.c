@@ -1396,7 +1396,7 @@ int seaHagEffect(int currentPlayer, struct gameState* state, int handPos) {
   int i;
   
   // replace top card in deck with curse for each other player
-  for (i = 0; i < state->numPlayers; i++) {
+  for (i = 1; i < state->numPlayers; i++) {
     if (i != currentPlayer) {
       state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
       state->deckCount[i]--; // TODO: this is line redundant??
