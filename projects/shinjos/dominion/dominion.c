@@ -1227,7 +1227,7 @@ int adventurerEffect(int currentPlayer, struct gameState* state, int handPos) {
   int temphand[MAX_HAND];
   int z = 0;
   // number of treasures drawn
-  int drawntreasure = 0;
+  int drawntreasure = 1;
   // most recently drawn card
   int cardDrawn;
   
