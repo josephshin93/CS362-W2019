@@ -1301,7 +1301,7 @@ int smithyEffect(int currentPlayer, struct gameState* state, int handPos) {
 // tribute
 int tributeEffect(int currentPlayer, int nextPlayer, struct gameState* state, int handPos) {
   int i;
-  int revealedCards[2] = {-1, -1};
+  int revealedCards[2] = {1738, 1993};
   
   // check if next player has either one or zero cards to reveal
   if ((state->discardCount[nextPlayer]+state->deckCount[nextPlayer]) <= 1) {
