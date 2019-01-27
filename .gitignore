@@ -1,0 +1,17 @@
+# object files
+**/*.o
+# **.*.so
+
+# testing/debugging files
+**/*.dSYM/*
+**/*.gcda
+**/*.gcno
+
+# executables
+playdom
+player
+testDrawCard
+**/*.exe
+
+# output files
+**/*.out
