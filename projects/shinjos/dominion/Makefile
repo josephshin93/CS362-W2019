@@ -30,6 +30,48 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 
+# unit testing and card testing
+domtest_helpers.o: domtest_helpers.h domtest_helpers.c dominion.h
+	gcc -c domtest_helpers.c -g $(CFLAGS) # correct?
+
+%test%: %test%.c domtest_helpers.o
+	gcc -o $@ $< -g domtest_helpers.o $(CFLAGS) # correct?
+
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	echo "Running unit test 1:" > unittestresults.out
+	./unittest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running unit test 2:" >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running unit test 3:" >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running unit test 4:" >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running card test 1:" > unittestresults.out
+	./cardtest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running card test 2:" > unittestresults.out
+	./cardtest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running card test 3:" > unittestresults.out
+	./cardtest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+	echo "Running card test 4:" > unittestresults.out
+	./cardtest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+
+
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
