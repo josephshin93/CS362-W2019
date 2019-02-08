@@ -31,11 +31,12 @@ runtests: testDrawCard
 
 
 # unit testing and card testing
+# make sure these are correct
 domtest_helpers.o: domtest_helpers.h domtest_helpers.c dominion.h
-	gcc -c domtest_helpers.c -g $(CFLAGS) # correct?
+	gcc -c domtest_helpers.c -g $(CFLAGS)
 
 %test%: %test%.c domtest_helpers.o
-	gcc -o $@ $< -g domtest_helpers.o $(CFLAGS) # correct?
+	gcc -o $@ $< -g domtest_helpers.o $(CFLAGS)
 
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	echo "Running unit test 1:" > unittestresults.out
