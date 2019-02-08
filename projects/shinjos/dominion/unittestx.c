@@ -5,21 +5,50 @@
  *****************************************************************************/
 
 #include "dominion.h"
-#include "dominion_helpers.h"
+#include "domtest_helpers.h"
 #include <stdio.h>
 #include <string.h>
 
 
+void testScenarioA(struct gameState *expc, 
+                   struct gameState *resl, 
+                   struct gscomp *comp) {
+    int compres;
+    
+    // reset game states and game state comparisons
+    memset(expc, 0, sizeof(struct gameState));
+    memset(resl, 0, sizeof(struct gameState));
+    memset(comp, 0, sizeof(struct gscomp));
+
+    // declare scenario 1 variables
+    
+    // set up scenario 1 initial game state
+
+    memcpy(expc, resl, sizeof(struct gameState));
+
+    // manually(?) set scenario 1 expected game state
+
+    // call target function
+
+    // compare game states
+    compareStates(expc, resl, 0, 0);
+
+    // compres = compareStatesAndSave(expc, resl, comp);
+    // printf("compare game state return value: %d\n", compres);
+    // printGscomp(comp);
+
+
+    // interpret comparison(?)
+
+}
+
+
 void unitTestX() {
-    // set up game states and return values
+    // declare game states and game state comparison
+    struct gameState expected, resulting;
+    struct gscomp comp;
 
-    // modify one game state to expected game state
-
-    // run target function with original game state
-
-    // compare game states and return values
-
-    // interpret comparisons
+    testScenarioA(&expected, &resulting, &comp);
 
 }
 
