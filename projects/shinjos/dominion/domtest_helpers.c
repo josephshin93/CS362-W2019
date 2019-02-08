@@ -134,7 +134,6 @@ int compareStatesAndSave(struct gameState *expc,
 void compareStates(struct gameState *expc, struct gameState *resl, int ver, int apl) {
     int i, j;
     // char lt = '<', gt = '>', eq = '==', co;
-    char *NRM = "\x1B[0m", *RED = "\x1B[31m", *GRN = "\x1B[32m";
     size_t apSize = sizeof(char) * apl * 50 * 5;
     char *arrayPrint = malloc(apSize);
     int comp, eq, ap;
@@ -146,8 +145,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("numPlayers:      ");
     comp = (expc->numPlayers > resl->numPlayers) - 
            (expc->numPlayers < resl->numPlayers);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->numPlayers, (char)('='+comp), resl->numPlayers);
     printf("\n");
 
@@ -164,8 +163,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->supplyCount[i], (char)('='+comp), resl->supplyCount[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -182,8 +181,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->embargoTokens[i], (char)('='+comp), resl->embargoTokens[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -192,16 +191,16 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("outpostPlayed:   ");
     comp = (expc->outpostPlayed > resl->outpostPlayed) - 
            (expc->outpostPlayed < resl->outpostPlayed);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->outpostPlayed, (char)('='+comp), resl->outpostPlayed);
     printf("\n");
 
     printf("outpostTurn:     ");
     comp = (expc->outpostTurn > resl->outpostTurn) - 
            (expc->outpostTurn < resl->outpostTurn);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->outpostTurn, (char)('='+comp), resl->outpostTurn);
     printf("\n");
 
@@ -211,8 +210,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("whoseTurn:       ");
     comp = (expc->whoseTurn > resl->whoseTurn) - 
            (expc->whoseTurn < resl->whoseTurn);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->whoseTurn, (char)('='+comp), resl->whoseTurn);
     printf("\n");
 
@@ -221,8 +220,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("phase:           ");
     comp = (expc->phase > resl->phase) - 
            (expc->phase < resl->phase);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->phase, (char)('='+comp), resl->phase);
     printf("\n");
 
@@ -231,8 +230,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("numActions:      ");
     comp = (expc->numActions > resl->numActions) - 
            (expc->numActions < resl->numActions);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->numActions, (char)('='+comp), resl->numActions);
     printf("\n");
 
@@ -241,8 +240,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("coins:           ");
     comp = (expc->coins > resl->coins) - 
            (expc->coins < resl->coins);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->coins, (char)('='+comp), resl->coins);
     printf("\n");
 
@@ -251,8 +250,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
     printf("numBuys:         ");
     comp = (expc->numBuys > resl->numBuys) - 
            (expc->numBuys < resl->numBuys);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->numBuys, (char)('='+comp), resl->numBuys);
     printf("\n");
 
@@ -271,8 +270,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
             if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d][%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, j, expc->hand[i][j], (char)('='+comp), resl->hand[i][j]);
         }
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -287,8 +286,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->handCount[i], (char)('='+comp), resl->handCount[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
     
@@ -307,8 +306,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
             if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d][%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, j, expc->deck[i][j], (char)('='+comp), resl->deck[i][j]);
         }
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -324,8 +323,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->deckCount[i], (char)('='+comp), resl->deckCount[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -344,8 +343,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
             if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d][%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, j, expc->discard[i][j], (char)('='+comp), resl->discard[i][j]);
         }
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
@@ -361,8 +360,8 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->discardCount[i], (char)('='+comp), resl->discardCount[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
     
@@ -379,16 +378,16 @@ void compareStates(struct gameState *expc, struct gameState *resl, int ver, int 
         // add to array print
         if (++ap <= apl) sprintf(arrayPrint, "%s                 [%d] -> expected(%d) %c resulting(%d)\n", arrayPrint, i, expc->playedCards[i], (char)('='+comp), resl->playedCards[i]);
     }
-    if (!eq) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (!eq) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     printf("\n");
     if (ver) printf("%s", arrayPrint);
 
     printf("playedCardCount: ");
     comp = (expc->playedCardCount > resl->playedCardCount) - 
            (expc->playedCardCount < resl->playedCardCount);
-    if (comp != 0) printf("%sWRONG%s   ", RED, NRM);
-    else printf("%sCORRECT%s ", GRN, NRM);
+    if (comp != 0) printf("%sWRONG%s   ", CRED, CNRM);
+    else printf("%sCORRECT%s ", CGRN, CNRM);
     if (ver) printf("expected(%d) %c resulting(%d)", expc->playedCardCount, (char)('='+comp), resl->playedCardCount);
     printf("\n");
 

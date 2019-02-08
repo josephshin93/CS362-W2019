@@ -33,6 +33,12 @@ struct gscomp {
   int playedCardCount;
 };
 
+// color printing
+#define CNRM "\x1B[0m"
+#define CRED "\x1B[31m"
+#define CGRN "\x1B[32m"
+
+
 
 /*  Input: pointer to expected game state
  *         pointer to resulting game state
