@@ -10,26 +10,37 @@
 #include <string.h>
 
 
-void testScenarioA(struct gameState *expc, 
+/* Normal Scenario
+ */
+void testScenarioX(struct gameState *expc, 
                    struct gameState *resl, 
                    struct gscomp *comp) {
     int compres;
+    int ret, expRet = 0;
     
     // reset game states and game state comparisons
     memset(expc, 0, sizeof(struct gameState));
     memset(resl, 0, sizeof(struct gameState));
     memset(comp, 0, sizeof(struct gscomp));
 
-    // declare scenario 1 variables
+    // declare scenario variables
+    int targetcard = 6, currplayer = 1;
     
-    // set up scenario 1 initial game state
+    // set up scenario initial game state
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario 1 expected game state
+    // manually(?) set scenario expected game state
 
     // call target function
 
+    printf("---------------------------------- Scenario A ----------------------------------\n");
+
+    // compare return values
+    printf("Return Value: ");
+    if (ret == expRet) printf("%sCORRECT%s\n", CGRN, CNRM);
+    else printf("%sWRONG%s\n", CRED, CNRM);
+    
     // compare game states
     compareStates(expc, resl, 0, 0);
 
@@ -40,6 +51,7 @@ void testScenarioA(struct gameState *expc,
 
     // interpret comparison(?)
 
+    printf("--------------------------------------------------------------------------------\n");
 }
 
 
@@ -48,9 +60,14 @@ void unitTestX() {
     struct gameState expected, resulting;
     struct gscomp comp;
 
-    testScenarioA(&expected, &resulting, &comp);
+    printf("================================= UNIT TEST X ==================================\n");
+    printf("target function: \n");
 
+    testScenarioX(&expected, &resulting, &comp);
+
+    printf("================================================================================\n");
 }
+
 
 int main() {
     unitTestX();
