@@ -35,8 +35,8 @@ runtests: testDrawCard
 domtest_helpers.o: domtest_helpers.h domtest_helpers.c dominion.h
 	gcc -c domtest_helpers.c -g $(CFLAGS)
 
-%test%: %test%.c domtest_helpers.o
-	gcc -o $@ $< -g domtest_helpers.o $(CFLAGS)
+unittest1: unittest1.c dominion.o rngs.o domtest_helpers.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
 
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	echo "Running unit test 1:" > unittestresults.out
