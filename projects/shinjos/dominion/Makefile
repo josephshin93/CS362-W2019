@@ -44,6 +44,9 @@ unittest2: unittest2.c dominion.o rngs.o domtest_helpers.o
 unittest3: unittest3.c dominion.o rngs.o domtest_helpers.o
 	gcc -o unittest3 -g unittest3.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
 
+unittest4: unittest4.c dominion.o rngs.o domtest_helpers.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
+
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	echo "Running unit test 1:" > unittestresults.out
 	./unittest1 >> unittestresults.out
