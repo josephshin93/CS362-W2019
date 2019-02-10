@@ -10,15 +10,16 @@
 #include <string.h>
 
 
-/* Normal Scenario
+/* Scenario A: Normal Scenario
    targetcard = 6 = gold
 
    2 players
    current player = 1
    phase = 1
-   supply of target card = 5
+   supply of gold = 30
    coins = 6
    buys = 1
+   all others = 0
  */
 void testScenarioA(struct gameState *expc, 
                    struct gameState *resl, 
@@ -31,27 +32,27 @@ void testScenarioA(struct gameState *expc,
     memset(resl, 0, sizeof(struct gameState));
     memset(comp, 0, sizeof(struct gscomp));
 
-    // declare scenario A variables
-    int targetcard = 6, currplayer = 1;
+    // declare scenario variables
+    int currplayer = 1;
     
-    // set up scenario A initial game state
+    // set up scenario initial game state
     resl->numPlayers = 2;
     resl->whoseTurn = currplayer;
     resl->phase = 1;
-    resl->supplyCount[targetcard] = 5;
+    resl->supplyCount[gold] = 30;
     resl->coins = 6;
     resl->numBuys = 1;
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario A expected game state
-    expc->supplyCount[targetcard]--;
+    // manually set scenario expected game state
+    expc->supplyCount[gold]--;
     expc->coins -= 6;
     expc->numBuys--;
     expc->discard[currplayer][expc->discardCount[currplayer]++] = gold;
 
     // call target function
-    ret = buyCard(targetcard, resl);
+    ret = buyCard(gold, resl);
 
     printf("---------------------------------- Scenario A ----------------------------------\n");
 
@@ -73,45 +74,54 @@ void testScenarioA(struct gameState *expc,
     printf("--------------------------------------------------------------------------------\n");
 }
 
-/* No Supply Scenario
+/* Scenario B: Embargo Scenario
    targetcard = 6 = gold
 
    2 players
    current player = 1
    phase = 1
-   supply of target card = 0
+   supply of gold = 30
+   supply of curse = 10
    coins = 6
    buys = 1
+   all others = 0
  */
 void testScenarioB(struct gameState *expc, 
                    struct gameState *resl, 
                    struct gscomp *comp) {
     int compres;
-    int ret, expRet = -1;
+    int ret, expRet = 0;
     
     // reset game states and game state comparisons
     memset(expc, 0, sizeof(struct gameState));
     memset(resl, 0, sizeof(struct gameState));
     memset(comp, 0, sizeof(struct gscomp));
 
-    // declare scenario B variables
-    int targetcard = 6, currplayer = 1;
+    // declare scenario variables
+    int currplayer = 1;
     
-    // set up scenario B initial game state
+    // set up scenario initial game state
     resl->numPlayers = 2;
     resl->whoseTurn = currplayer;
     resl->phase = 1;
-    resl->supplyCount[targetcard] = 0;
+    resl->supplyCount[gold] = 30;
+    resl->supplyCount[curse] = 10;
+    resl->embargoTokens[gold] = 1;
     resl->coins = 6;
     resl->numBuys = 1;
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario B expected game state
-    // no change
+    // manually set scenario expected game state
+    expc->supplyCount[gold]--;
+    expc->supplyCount[curse]--;
+    expc->coins -= 6;
+    expc->numBuys--;
+    expc->discard[currplayer][expc->discardCount[currplayer]++] = gold;
+    expc->discard[currplayer][expc->discardCount[currplayer]++] = curse;
 
     // call target function
-    ret = buyCard(targetcard, resl);
+    ret = buyCard(gold, resl);
 
     printf("---------------------------------- Scenario B ----------------------------------\n");
 
@@ -121,7 +131,7 @@ void testScenarioB(struct gameState *expc,
     else printf("%sWRONG%s\n", CRED, CNRM);
     
     // compare game states
-    compareStates(expc, resl, 0, 0);
+    compareStates(expc, resl, 1, 7);
 
     // compres = compareStatesAndSave(expc, resl, comp);
     // printf("compare game state return value: %d\n", compres);
@@ -133,13 +143,13 @@ void testScenarioB(struct gameState *expc,
     printf("--------------------------------------------------------------------------------\n");
 }
 
-/* No Coins Scenario
+/* Scenario C: No Coins Scenario
    targetcard = 6 = gold
 
    2 players
    current player = 1
    phase = 1
-   supply of target card = 5
+   supply of gold = 30
    coins = 0
    buys = 1
  */
@@ -155,23 +165,23 @@ void testScenarioC(struct gameState *expc,
     memset(comp, 0, sizeof(struct gscomp));
 
     // declare scenario variables
-    int targetcard = 6, currplayer = 1;
+    int currplayer = 1;
     
     // set up scenario initial game state
     resl->numPlayers = 2;
     resl->whoseTurn = currplayer;
     resl->phase = 1;
-    resl->supplyCount[targetcard] = 5;
+    resl->supplyCount[gold] = 30;
     resl->coins = 0;
     resl->numBuys = 1;
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario expected game state
+    // manually set scenario expected game state
     // no change
 
     // call target function
-    ret = buyCard(targetcard, resl);
+    ret = buyCard(gold, resl);
 
     printf("---------------------------------- Scenario C ----------------------------------\n");
 
@@ -193,15 +203,15 @@ void testScenarioC(struct gameState *expc,
     printf("--------------------------------------------------------------------------------\n");
 }
 
-/* No Buys Scenario
+/* Scenario D: Wrong Phase Scenario
    targetcard = 6 = gold
 
    2 players
    current player = 1
-   phase = 1
-   supply of target card = 5
+   phase = 0
+   supply of gold = 30
    coins = 6
-   buys = 0
+   buys = 1
  */
 void testScenarioD(struct gameState *expc, 
                    struct gameState *resl, 
@@ -215,23 +225,23 @@ void testScenarioD(struct gameState *expc,
     memset(comp, 0, sizeof(struct gscomp));
 
     // declare scenario variables
-    int targetcard = 6, currplayer = 1;
+    int currplayer = 1;
     
     // set up scenario initial game state
     resl->numPlayers = 2;
     resl->whoseTurn = currplayer;
-    resl->phase = 1;
-    resl->supplyCount[targetcard] = 5;
+    resl->phase = 0;
+    resl->supplyCount[gold] = 30;
     resl->coins = 6;
-    resl->numBuys = 0;
+    resl->numBuys = 1;
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario expected game state
+    // manually set scenario expected game state
     // no change
 
     // call target function
-    ret = buyCard(targetcard, resl);
+    ret = buyCard(gold, resl);
 
     printf("---------------------------------- Scenario D ----------------------------------\n");
 
@@ -252,7 +262,6 @@ void testScenarioD(struct gameState *expc,
 
     printf("--------------------------------------------------------------------------------\n");
 }
-
 
 void unitTest1() {
     // declare game states and game state comparison
