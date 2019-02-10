@@ -38,8 +38,9 @@ void testScenarioX(struct gameState *expc,
 
     // compare return values
     printf("Return Value: ");
-    if (ret == expRet) printf("%sCORRECT%s\n", CGRN, CNRM);
-    else printf("%sWRONG%s\n", CRED, CNRM);
+    compres = (expRet > ret) - (expRet < ret);
+    if (compres == 0) printf("%sCORRECT%s\n", CGRN, CNRM);
+    else printf("%sWRONG%s   expected(%d) %c resulting(%d)\n", CRED, CNRM, expRet, (char)('='+compres), ret);
     
     // compare game states
     compareStates(expc, resl, 0, 0);
