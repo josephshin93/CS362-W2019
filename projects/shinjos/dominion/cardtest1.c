@@ -3,9 +3,11 @@
  * Date Created: 2019 Feb 10
  *  Description: Unit test for adventurer card.
  *               Adventurer: 
- *                 Reveal cards from your deck until you reveal 2 Treasure 
+ *                 "Reveal cards from your deck until you reveal 2 Treasure 
  *                 cards. Put those Treasure cards into your hand and discard 
- *                 the other revealed cards.
+ *                 the other revealed cards."[1]
+ * 
+ *               [1] From: http://wiki.dominionstrategy.com/index.php/List_of_cards
  *****************************************************************************/
 
 #include "dominion.h"
