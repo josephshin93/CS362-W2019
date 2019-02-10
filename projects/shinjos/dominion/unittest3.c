@@ -153,7 +153,7 @@ void unitTest3() {
     struct gscomp comp;
 
     printf("================================= UNIT TEST 3 ==================================\n");
-    printf("target function: \n");
+    printf("target function: int scoreFor(int player, struct gameState *state)\n");
 
     testScenarioA(&expected, &resulting, &comp);
     testScenarioB(&expected, &resulting, &comp);

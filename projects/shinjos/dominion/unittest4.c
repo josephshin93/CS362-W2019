@@ -163,7 +163,7 @@ void unitTest4() {
     struct gscomp comp;
 
     printf("================================= UNIT TEST 4 ==================================\n");
-    printf("target function: \n");
+    printf("target function: int fullDeckCount(int player, int card, struct gameState *state)\n");
 
     testScenarioA(&expected, &resulting, &comp);
     testScenarioB(&expected, &resulting, &comp);

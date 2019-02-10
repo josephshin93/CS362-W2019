@@ -269,12 +269,12 @@ void unitTest1() {
     struct gscomp comp;
 
     printf("================================= UNIT TEST 1 ==================================\n");
-    printf("target function: buyCard(int supplyPos, struct gameState *state\n");
+    printf("target function: int buyCard(int supplyPos, struct gameState *state)\n");
 
     testScenarioA(&expected, &resulting, &comp);
     testScenarioB(&expected, &resulting, &comp);
-    testScenarioC(&expected, &resulting, &comp);
-    testScenarioD(&expected, &resulting, &comp);
+    // testScenarioC(&expected, &resulting, &comp);
+    // testScenarioD(&expected, &resulting, &comp);
 
     printf("================================================================================\n");
 }

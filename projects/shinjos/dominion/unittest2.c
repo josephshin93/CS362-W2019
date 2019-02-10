@@ -375,7 +375,7 @@ void unitTest2() {
     struct gscomp comp;
 
     printf("================================= UNIT TEST 2 ==================================\n");
-    printf("target function: endTurn(struct gameState *state)\n");
+    printf("target function: int endTurn(struct gameState *state)\n");
 
     testScenarioA(&expected, &resulting, &comp);
     testScenarioB(&expected, &resulting, &comp);

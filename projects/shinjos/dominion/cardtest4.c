@@ -126,7 +126,8 @@ void cardTest4() {
     struct gscomp comp;
 
     printf("================================= CARD TEST 4 ==================================\n");
-    printf("target function: \n");
+    printf("target card:     Sea Hag\n");
+    printf("target function: int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)\n");
 
     testScenarioA(&expected, &resulting, &comp);
 
