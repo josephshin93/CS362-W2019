@@ -30,11 +30,11 @@ void testScenarioX(struct gameState *expc,
 
     memcpy(expc, resl, sizeof(struct gameState));
 
-    // manually(?) set scenario expected game state
+    // manually set scenario expected game state
 
     // call target function
 
-    printf("---------------------------------- Scenario A ----------------------------------\n");
+    printf("---------------------------------- Scenario X ----------------------------------\n");
 
     // compare return values
     printf("Return Value: ");
