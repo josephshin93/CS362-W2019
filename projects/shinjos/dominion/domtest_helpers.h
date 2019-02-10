@@ -34,9 +34,12 @@ struct gscomp {
 };
 
 // color printing
-#define CNRM "\x1B[0m"
-#define CRED "\x1B[31m"
-#define CGRN "\x1B[32m"
+// #define CNRM "\x1B[0m"
+// #define CRED "\x1B[31m"
+// #define CGRN "\x1B[32m"
+#define CNRM ""
+#define CRED ""
+#define CGRN ""
 
 
 
