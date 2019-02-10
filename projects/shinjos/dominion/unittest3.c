@@ -61,8 +61,9 @@ void testScenarioA(struct gameState *expc,
 
     // compare return values
     printf("Return Value: ");
-    if (ret == expRet) printf("%sCORRECT%s\n", CGRN, CNRM);
-    else printf("%sWRONG%s\n", CRED, CNRM);
+    compres = (expRet > ret) - (expRet < ret);
+    if (compres == 0) printf("%sCORRECT%s\n", CGRN, CNRM);
+    else printf("%sWRONG%s   expected(%d) %c resulting(%d)\n", CRED, CNRM, expRet, (char)('='+compres), ret);
     
     // compare game states
     compareStates(expc, resl, 0, 0);
@@ -78,7 +79,7 @@ void testScenarioA(struct gameState *expc,
 }
 
 /* Scenario B: Bad Player Input Scenario
-   target player = 2
+   target player = 3
    
    2 players
    player [1] hand = copper, estate, copper
@@ -97,21 +98,21 @@ void testScenarioB(struct gameState *expc,
     memset(comp, 0, sizeof(struct gscomp));
 
     // declare scenario variables
-    int targetplayer = 2;
+    int targetplayer = 3, lastplayer = 1;
     
     // set up scenario initial game state
     resl->numPlayers = 2;
-    resl->hand[targetplayer][0] = copper;
-    resl->hand[targetplayer][1] = estate;
-    resl->hand[targetplayer][2] = copper;
-    resl->handCount[targetplayer] = 3;
-    resl->deck[targetplayer][0] = province;
-    resl->deck[targetplayer][1] = copper;
-    resl->deckCount[targetplayer] = 2;
-    resl->discard[targetplayer][0] = duchy;
-    resl->discard[targetplayer][1] = curse;
-    resl->discard[targetplayer][2] = copper;
-    resl->discardCount[targetplayer] = 3;
+    resl->hand[lastplayer][0] = copper;
+    resl->hand[lastplayer][1] = estate;
+    resl->hand[lastplayer][2] = copper;
+    resl->handCount[lastplayer] = 3;
+    resl->deck[lastplayer][0] = province;
+    resl->deck[lastplayer][1] = copper;
+    resl->deckCount[lastplayer] = 2;
+    resl->discard[lastplayer][0] = duchy;
+    resl->discard[lastplayer][1] = curse;
+    resl->discard[lastplayer][2] = copper;
+    resl->discardCount[lastplayer] = 3;
 
 
     memcpy(expc, resl, sizeof(struct gameState));
@@ -128,8 +129,9 @@ void testScenarioB(struct gameState *expc,
 
     // compare return values
     printf("Return Value: ");
-    if (ret == expRet) printf("%sCORRECT%s\n", CGRN, CNRM);
-    else printf("%sWRONG%s\n", CRED, CNRM);
+    compres = (expRet > ret) - (expRet < ret);
+    if (compres == 0) printf("%sCORRECT%s\n", CGRN, CNRM);
+    else printf("%sWRONG%s   expected(%d) %c resulting(%d)\n", CRED, CNRM, expRet, (char)('='+compres), ret);
     
     // compare game states
     compareStates(expc, resl, 0, 0);
