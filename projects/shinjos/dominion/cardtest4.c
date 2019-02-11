@@ -83,6 +83,7 @@ void testScenarioA(struct gameState *expc,
     expc->numActions--;
     expc->hand[currplayer][0] = smithy;
     expc->hand[currplayer][4] = -1;
+    expc->handCount[currplayer]--;
     expc->deck[1][0] = curse;
     expc->discard[1][0] = copper;
     expc->discardCount[1] = 1;

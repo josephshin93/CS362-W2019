@@ -74,7 +74,7 @@ void testScenarioA(struct gameState *expc,
     expc->hand[currplayer][5] = silver;
     expc->hand[currplayer][6] = adventurer;
     expc->hand[currplayer][7] = curse;
-    expc->handCount[currplayer] += 3;
+    expc->handCount[currplayer] += 2;
     expc->deck[currplayer][3] = -1;
     expc->deck[currplayer][2] = -1;
     expc->deck[currplayer][1] = -1;
@@ -167,7 +167,7 @@ void testScenarioB(struct gameState *expc,
     expc->hand[currplayer][5] = silver;
     expc->hand[currplayer][6] = adventurer;
     expc->hand[currplayer][7] = estate;
-    expc->handCount[currplayer] += 3;
+    expc->handCount[currplayer] += 2;
     expc->deck[currplayer][1] = -1; // remove 2 for draw, add 2 from shuffle, remove 1 for draw
     expc->deck[currplayer][0] = estate;
     expc->deckCount[currplayer] -= 1;
