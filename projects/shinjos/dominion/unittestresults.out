@@ -1842,3 +1842,4 @@ File 'dominion.c'
 Lines executed:35.89% of 638
 dominion.c:creating 'dominion.c.gcov'
 
+\n\nRunning unit test 1:
