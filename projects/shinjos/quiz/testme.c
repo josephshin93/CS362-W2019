@@ -3,10 +3,14 @@
 #include<stdlib.h>
 #include<time.h>
 
+// return random integer within range [lowerLimit, upperLimit]
+// random number generator should be seeded before this -> run srand()
 int randInt(int lowerLimit, int upperLimit) {
   return (rand() % (upperLimit - lowerLimit + 1)) + lowerLimit;
 }
 
+// shuffling an array based on the fisher-yates technqiue
+// based on pseudo-code from: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 void fyShuffle(int *arr, int len) {
   int i, j, temp;
   for (i = 0; i < len-1; i++) {
