@@ -4,3 +4,7 @@ testme: testme.c
 runquiz: testme
 	./testme
 	gcov -b testme.c
+
+clean:
+	rm -f testme *.gcov *.gcda *.gcno
+	
