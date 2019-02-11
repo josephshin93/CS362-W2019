@@ -3,16 +3,48 @@
 #include<stdlib.h>
 #include<time.h>
 
+int randInt(int lowerLimit, int upperLimit) {
+  return (rand() % (upperLimit - lowerLimit + 1)) + lowerLimit;
+}
+
+void fyShuffle(int *arr, int len) {
+  int i, j, temp;
+  for (i = 0; i < len-1; i++) {
+    j = randInt(i, len-1);
+    temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+}
+
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+    char *choices = "[({ ax})]";
+    int index = randInt(0, strlen(choices)-1);
+    // printf("index = %d\n", index);
+    return choices[index];
 }
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    int i;
+    char *word = "reset";
+    int len = strlen(word);
+
+    int *indices = malloc(sizeof(int) * len);
+    for (i = 0; i < len; i++) indices[i] = i;
+
+    char *shuffledWord = malloc(sizeof(char) * len+1);
+    memset(shuffledWord, 0, len+1);
+
+    fyShuffle(indices, len);
+
+    for (i = 0; i < len; i++) shuffledWord[i] = word[indices[i]];
+    // printf("shuffled word = \"%s\"\n", shuffledWord);
+
+    free(indices);
+    
+    return shuffledWord;
 }
 
 void testme()
@@ -45,6 +77,8 @@ void testme()
       printf("error ");
       exit(200);
     }
+
+    free(s);
   }
 }
 
