@@ -6,5 +6,4 @@ runquiz: testme
 	gcov -b testme.c
 
 clean:
-	rm -f testme *.gcov *.gcda *.gcno
-	
+	rm -f testme *.gcda *.gcno
