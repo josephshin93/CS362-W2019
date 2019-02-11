@@ -61,35 +61,35 @@ cardtest4: cardtest4.c dominion.o rngs.o domtest_helpers.o
 
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	echo "Running All Unit Tests..." > unittestresults.out
-	echo -e "\n\nRunning unit test 1:" >> unittestresults.out
+	echo "\n\nRunning unit test 1:" >> unittestresults.out
 	./unittest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning unit test 2:" >> unittestresults.out
+	echo "\n\nRunning unit test 2:" >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning unit test 3:" >> unittestresults.out
+	echo "\n\nRunning unit test 3:" >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning unit test 4:" >> unittestresults.out
+	echo "\n\nRunning unit test 4:" >> unittestresults.out
 	./unittest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning card test 1:" >> unittestresults.out
+	echo "\n\nRunning card test 1:" >> unittestresults.out
 	./cardtest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning card test 2:" >> unittestresults.out
+	echo "\n\nRunning card test 2:" >> unittestresults.out
 	./cardtest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning card test 3:" >> unittestresults.out
+	echo "\n\nRunning card test 3:" >> unittestresults.out
 	./cardtest3 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
-	echo -e "\n\nRunning card test 4:" >> unittestresults.out
+	echo "\n\nRunning card test 4:" >> unittestresults.out
 	./cardtest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 
