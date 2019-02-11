@@ -96,7 +96,7 @@ void testScenarioB(struct gameState *expc,
                    struct gameState *resl, 
                    struct gscomp *comp) {
     int compres;
-    int ret, expRet = 0;
+    int ret, expRet = -1;
     
     // reset game states and game state comparisons
     memset(expc, 0, sizeof(struct gameState));
@@ -135,7 +135,7 @@ void testScenarioB(struct gameState *expc,
     ret = fullDeckCount(targetplayer, copper, resl);
 
 
-    printf("---------------------------------- Scenario A ----------------------------------\n");
+    printf("---------------------------------- Scenario B ----------------------------------\n");
 
     // compare return values
     printf("Return Value: ");
