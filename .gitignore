@@ -1,2 +1,22 @@
 # practice/learning files
 projects/shinjos/private/*
+
+# dominion
+# gcov/compilation files
+projects/shinjos/dominion/*.gcda
+projects/shinjos/dominion/*.gcno
+projects/shinjos/dominion/*.c.gcov
+projects/shinjos/dominion/*.o
+projects/shinjos/dominion/*.dSYM
+# executables
+projects/shinjos/dominion/playdom
+projects/shinjos/dominion/cardtest1
+projects/shinjos/dominion/cardtest2
+projects/shinjos/dominion/cardtest3
+projects/shinjos/dominion/cardtest4
+projects/shinjos/dominion/cardtest5
+projects/shinjos/dominion/unittest1
+projects/shinjos/dominion/unittest2
+projects/shinjos/dominion/unittest3
+projects/shinjos/dominion/unittest4
+projects/shinjos/dominion/unittest5
