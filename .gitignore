@@ -20,3 +20,11 @@ projects/shinjos/dominion/unittest2
 projects/shinjos/dominion/unittest3
 projects/shinjos/dominion/unittest4
 projects/shinjos/dominion/unittest5
+
+# final project
+FinalProject/**/.gitignore
+FinalProject/**/.classpath
+FinalProject/**/.project
+FinalProject/**/.metadata
+projects/shinjos/FinalProject/**/.metadata
+projects/shinjos/FinalProject/**/.metadata
