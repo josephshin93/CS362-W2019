@@ -10,6 +10,9 @@ projects/shinjos/dominion/*.o
 projects/shinjos/dominion/*.dSYM
 # executables
 projects/shinjos/dominion/playdom
+projects/shinjos/dominion/player
+projects/shinjos/dominion/testDrawCard
+projects/shinjos/dominion/badTestDrawCard
 projects/shinjos/dominion/cardtest1
 projects/shinjos/dominion/cardtest2
 projects/shinjos/dominion/cardtest3
