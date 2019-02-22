@@ -1,0 +1,54 @@
+================================= UNIT TEST 4 ==================================
+target function: int fullDeckCount(int player, int card, struct gameState *state)
+---------------------------------- Scenario A ----------------------------------
+Return Value: CORRECT
+Game State Comparison:
+numPlayers:      CORRECT 
+supplyCount:     CORRECT 
+embargoTokens:   CORRECT 
+outpostPlayed:   CORRECT 
+outpostTurn:     CORRECT 
+whoseTurn:       CORRECT 
+phase:           CORRECT 
+numActions:      CORRECT 
+coins:           CORRECT 
+numBuys:         CORRECT 
+hand:            CORRECT 
+handCount:       CORRECT 
+deck:            CORRECT 
+deckCount:       CORRECT 
+discard:         CORRECT 
+discardCount:    CORRECT 
+playedCards:     CORRECT 
+playedCardCount: CORRECT 
+--------------------------------------------------------------------------------
+---------------------------------- Scenario B ----------------------------------
+Return Value: WRONG   expected(-1) < resulting(0)
+Game State Comparison:
+numPlayers:      CORRECT 
+supplyCount:     CORRECT 
+embargoTokens:   CORRECT 
+outpostPlayed:   CORRECT 
+outpostTurn:     CORRECT 
+whoseTurn:       CORRECT 
+phase:           CORRECT 
+numActions:      CORRECT 
+coins:           CORRECT 
+numBuys:         CORRECT 
+hand:            CORRECT 
+handCount:       CORRECT 
+deck:            CORRECT 
+deckCount:       CORRECT 
+discard:         CORRECT 
+discardCount:    CORRECT 
+playedCards:     CORRECT 
+playedCardCount: CORRECT 
+--------------------------------------------------------------------------------
+================================================================================
+File 'dominion.c'
+Lines executed:1.72% of 638
+Branches executed:2.91% of 413
+Taken at least once:2.91% of 413
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

@@ -1,0 +1,54 @@
+================================= UNIT TEST 3 ==================================
+target function: int scoreFor(int player, struct gameState *state)
+---------------------------------- Scenario A ----------------------------------
+Return Value: WRONG   expected(9) > resulting(8)
+Game State Comparison:
+numPlayers:      CORRECT 
+supplyCount:     CORRECT 
+embargoTokens:   CORRECT 
+outpostPlayed:   CORRECT 
+outpostTurn:     CORRECT 
+whoseTurn:       CORRECT 
+phase:           CORRECT 
+numActions:      CORRECT 
+coins:           CORRECT 
+numBuys:         CORRECT 
+hand:            CORRECT 
+handCount:       CORRECT 
+deck:            CORRECT 
+deckCount:       CORRECT 
+discard:         CORRECT 
+discardCount:    CORRECT 
+playedCards:     CORRECT 
+playedCardCount: CORRECT 
+--------------------------------------------------------------------------------
+---------------------------------- Scenario B ----------------------------------
+Return Value: WRONG   expected(-9999) < resulting(0)
+Game State Comparison:
+numPlayers:      CORRECT 
+supplyCount:     CORRECT 
+embargoTokens:   CORRECT 
+outpostPlayed:   CORRECT 
+outpostTurn:     CORRECT 
+whoseTurn:       CORRECT 
+phase:           CORRECT 
+numActions:      CORRECT 
+coins:           CORRECT 
+numBuys:         CORRECT 
+hand:            CORRECT 
+handCount:       CORRECT 
+deck:            CORRECT 
+deckCount:       CORRECT 
+discard:         CORRECT 
+discardCount:    CORRECT 
+playedCards:     CORRECT 
+playedCardCount: CORRECT 
+--------------------------------------------------------------------------------
+================================================================================
+File 'dominion.c'
+Lines executed:4.08% of 638
+Branches executed:10.17% of 413
+Taken at least once:7.02% of 413
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
