@@ -41,7 +41,16 @@ struct gscomp {
 #define CRED ""
 #define CGRN ""
 
+#define ACTION_PHASE 0
+#define BUY_PHASE    1
 
+#define COPPER_VALUE 1
+#define SILVER_VALUE 2
+#define GOLD_VALUE   3
+
+
+
+int compare(const void* a, const void* b);
 
 /*  Input: pointer to expected game state
  *         pointer to resulting game state
@@ -56,5 +65,7 @@ int compareStatesAndSave(struct gameState *expc,
                          struct gscomp *comp);
 
 void printGscomp(struct gscomp *comp);
+
+int randomizeGameState(struct gameState *state);
 
 #endif

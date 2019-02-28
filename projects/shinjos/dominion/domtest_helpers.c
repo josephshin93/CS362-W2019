@@ -8,9 +8,17 @@
 
 #include "dominion.h"
 #include "domtest_helpers.h"
+#include "rngs.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+int compare(const void* a, const void* b) {
+  if (*(int*)a > *(int*)b)
+    return 1;
+  if (*(int*)a < *(int*)b)
+    return -1;
+  return 0;
+}
 
 int compareIntArrays(int *leftarr, int *rightarr, int *comparr, int len) {
     int i = 0, eq = 1;
@@ -131,6 +139,7 @@ int compareStatesAndSave(struct gameState *expc,
     return eq;
 }
 
+// TODO: improve function to return true and better printing
 void compareStates(struct gameState *expc, struct gameState *resl, int ver, int apl) {
     int i, j;
     // char lt = '<', gt = '>', eq = '==', co;
@@ -454,4 +463,52 @@ void printGscomp(struct gscomp *comp) {
     printf("playedCards:     "); printIntArray(comp->discardCount, MAX_DECK);
 
     printf("playedCardCount: %d\n", comp->playedCardCount);
+}
+
+
+/*   Input: Pointer to game state
+ *  Output: 0 = success, 1 = failed (not possible to return 1 at the moment)
+ * Summary: This function randomizes the given game state. All bytes of the 
+ *          game state struct will be assigned to random values; however, any 
+ *          members that are used as indices assigned to a random value within 
+ *          a range that will not cause seg faults. Remember, this most likely 
+ *          NOT return a valid game state. The Random() from rngs.h is used to
+ *          generate random numbers
+ */
+int randomizeGameState(struct gameState *state) {
+    int i;
+
+    // example from lecture
+    for (i = 0; i < sizeof(struct gameState); i++) {
+        ((char*)state)[i] = floor(Random() * 256);
+    }
+
+    // adjust to avoid seg faults
+    state->numPlayers = floor(Random() * MAX_PLAYERS);
+    state->whoseTurn = floor(Random() * MAX_PLAYERS);
+    state->playedCardCount = floor(Random() * MAX_DECK);
+    for (i = 0; i < state->numPlayers; i++) {
+        state->deckCount[i] = floor(Random() * MAX_DECK);
+        state->discardCount[i] = floor(Random() * MAX_DECK);
+        state->handCount[i] = floor(Random() * MAX_HAND);
+    }
+
+    /* possible areas that may cause errors/invalid for game state
+     * supplyCount: types of available and their supply # should be limited
+     * embargoTokens: should agree with supplyCount, limited to # of curses
+     * outpostPlayed: should be [0,1]
+     * outpostTurn: should be [0,1]
+     * whoseTurn: should be [0, numPlayers-1]
+     * phase: should be [0, 1, 2] ?
+     * numActions: -
+     * coins: should reflect hand[whoseTurn]?
+     * numBuys: -
+     * hand: -
+     * deck: -
+     * discard: -
+     * playedCards: -
+     * playedCardsCount: [0, MAX_DECK-1]
+     */ 
+
+    return 0;
 }
