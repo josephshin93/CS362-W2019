@@ -23,6 +23,12 @@ projects/shinjos/dominion/unittest2
 projects/shinjos/dominion/unittest3
 projects/shinjos/dominion/unittest4
 projects/shinjos/dominion/unittest5
+projects/shinjos/dominion/randomtestadventurer
+projects/shinjos/dominion/randomtestcard1
+projects/shinjos/dominion/randomtestcard2
+# trials
+projects/shinjos/dominion/tryrand
+projects/shinjos/dominion/tryRandom.c
 
 # final project
 FinalProject/**/.gitignore
