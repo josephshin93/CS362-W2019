@@ -33,6 +33,11 @@ struct gscomp {
   int playedCardCount;
 };
 
+struct range {
+  int base;
+  int width;
+};
+
 // color printing
 // #define CNRM "\x1B[0m"
 // #define CRED "\x1B[31m"
@@ -43,6 +48,7 @@ struct gscomp {
 
 #define ACTION_PHASE 0
 #define BUY_PHASE    1
+#define NUM_PHASES   3
 
 #define COPPER_VALUE 1
 #define SILVER_VALUE 2
@@ -50,7 +56,7 @@ struct gscomp {
 
 
 
-int compare(const void* a, const void* b);
+int compareInts(const void* a, const void* b);
 
 /*  Input: pointer to expected game state
  *         pointer to resulting game state
@@ -66,6 +72,12 @@ int compareStatesAndSave(struct gameState *expc,
 
 void printGscomp(struct gscomp *comp);
 
+int chanced(int percent);
+
+int randomRangeVa(int base, int width);
+
 int randomizeGameState(struct gameState *state);
+
+void printGameState(struct gameState *state, int indent);
 
 #endif

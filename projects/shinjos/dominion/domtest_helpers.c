@@ -11,8 +11,10 @@
 #include "rngs.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
-int compare(const void* a, const void* b) {
+int compareInts(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
   if (*(int*)a < *(int*)b)
@@ -28,6 +30,181 @@ int compareIntArrays(int *leftarr, int *rightarr, int *comparr, int len) {
     }
     return eq;
 }
+
+
+int _singleValuePrintLine(char *name, int value, int indent, char *buffer, int size) {
+    int i;
+    memset(buffer, '\0', sizeof(char) * size);
+    for (i = 0; i < indent; i++) strcat(buffer, "   ");
+    sprintf(buffer, "%s%15s: %d\n", buffer, name, value);
+
+    // printf("line buffer: \"%s\"\n", buffer);
+    return 0;
+}
+int _1darrPrintLines(char *name, int arr[], int len, int indent, char *buffer, int size) {
+    int i, j;
+    memset(buffer, '\0', sizeof(char) * size);
+
+    for (i = 0; i < indent; i++) strcat(buffer, "   ");
+    sprintf(buffer, "%s%15s:\n", buffer, name);
+    
+    for (i = 0; i < indent+1; i++) strcat(buffer, "   ");
+    strcat(buffer, "[ ");
+
+    for (i = 0; i < len; i++) {
+        sprintf(buffer, "%s%11d", buffer, arr[i]);
+        if (i + 1 < len) {
+            strcat(buffer, ", ");
+            if ((i+1) % 8 == 0) {
+                strcat(buffer, "\n");
+                for (j = 0; j < indent+1; j++) strcat(buffer, "   ");
+                strcat(buffer, "  ");
+            }
+        }
+    }
+
+    strcat(buffer, " ]\n");
+
+    // printf("arr buffer: \"%s\"\n", buffer);
+
+    return 0;
+}
+int _2darrPrintLines(char *name, int *arr[], int rows, int cols, int indent, char *buffer, int size) {
+    int i, j, k;
+    memset(buffer, '\0', sizeof(char) * size);
+
+    for (i = 0; i < indent; i++) strcat(buffer, "   ");
+    sprintf(buffer, "%s%15s:\n", buffer, name);
+
+    for (i = 0; i < indent+1; i++) strcat(buffer, "   ");
+    strcat(buffer, "[\n");
+
+    for (i = 0; i < rows; i++) {
+        for (k = 0; k < indent+2; k++) strcat(buffer, "   ");
+        strcat(buffer, "[ ");
+
+        for (j = 0; j < cols; j++) {
+            sprintf(buffer, "%s%11d", buffer, *((arr+i*cols) + j));
+            if (j + 1 < cols) {
+                strcat(buffer, ", ");
+                if ((j+1) % 8 == 0) {
+                    strcat(buffer, "\n");
+                    for (k = 0; k < indent+2; k++) strcat(buffer, "   ");
+                    strcat(buffer, "  ");
+                }
+            }
+        }
+
+        strcat(buffer, " ]\n");
+    }
+
+    for (i = 0; i < indent+1; i++) strcat(buffer, "   ");
+    strcat(buffer, "]\n");
+
+    // printf("matrix buffer: \"%s\"\n", buffer);
+
+    return 0;
+}
+// ERROR: this function seg-faults!
+void printGameState(struct gameState *state, int indent) {
+    int i;
+
+    int bufs, lins, arrbufs, matxbufs;
+    int MAX_IND = 5, 
+        MAX_ARR_LEN = 500, 
+        EL_PER_LINE = 10, 
+        IND_S = 3, 
+        NAME_S = 15, 
+        INT_S = 11, 
+        MAX_COL = 4,
+        HEADER_S = (MAX_IND*IND_S) + 12;
+
+    lins = ((indent+1)*IND_S) + NAME_S + INT_S + 3;
+    arrbufs = (((indent+1)*IND_S) + NAME_S + 1) +
+                ((int)ceil(MAX_ARR_LEN/EL_PER_LINE) * (((indent+2)*IND_S) + (EL_PER_LINE*(INT_S+2)) + 3));
+    matxbufs = (((indent+1)*IND_S) + NAME_S + 1) +
+                (MAX_COL * ((int)ceil(MAX_ARR_LEN/EL_PER_LINE) * (((indent+3)*IND_S) + (EL_PER_LINE*(INT_S+2)) + 3))) +
+                (2 * (((indent+2)*IND_S) + 2));
+    bufs = HEADER_S + 
+            (9 * lins) +
+            (6 * arrbufs) +
+            (3 * matxbufs) + 100;
+
+    // printf("lins = %d\narrbufs = %d\nmatxbufs = %d\nbufs = %d\n", lins, arrbufs, matxbufs, bufs);
+
+    char *buffer = malloc(sizeof(char) * bufs);
+    char *line = malloc(sizeof(char) * lins);
+    char *arrbuffer = malloc(sizeof(char) * arrbufs);
+    char *matbuffer = malloc(sizeof(char) * matxbufs);
+    
+    memset(buffer, '\0', sizeof(char) * bufs);
+    
+    strncat(buffer, "   ", indent);
+    strcat(buffer, "GAME STATE:\n");
+
+    _singleValuePrintLine("numPlayers", state->numPlayers, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _1darrPrintLines("supplyCount", state->supplyCount, treasure_map+1, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    _1darrPrintLines("embargoTokens", state->embargoTokens, treasure_map+1, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    _singleValuePrintLine("outpostPlayed", state->outpostPlayed, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("outpostTurn", state->outpostTurn, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("whoseTurn", state->whoseTurn, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("phase", state->phase, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("numActions", state->numActions, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("coins", state->coins, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _singleValuePrintLine("numBuys", state->numBuys, indent+1, line, lins);
+    strcat(buffer, line);
+
+    _2darrPrintLines("hand", state->hand, MAX_PLAYERS, MAX_HAND, indent+1, matbuffer, matxbufs);
+    strcat(buffer, matbuffer);
+
+    _1darrPrintLines("handCount", state->handCount, MAX_PLAYERS, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    _2darrPrintLines("deck", state->deck, MAX_PLAYERS, MAX_DECK, indent+1, matbuffer, matxbufs);
+    strcat(buffer, matbuffer);
+
+    _1darrPrintLines("deckCount", state->deckCount, MAX_PLAYERS, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    // TODO: this one is seg faulting
+    _2darrPrintLines("discard", state->discard, MAX_PLAYERS, MAX_DECK, indent+1, matbuffer, matxbufs);
+    strcat(buffer, matbuffer);
+
+    _1darrPrintLines("discardCount", state->discardCount, MAX_PLAYERS, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    _1darrPrintLines("playedCards", state->playedCards, MAX_DECK, indent+1, arrbuffer, arrbufs);
+    strcat(buffer, arrbuffer);
+
+    _singleValuePrintLine("playedCardCount", state->playedCardCount, indent+1, line, lins);
+    strcat(buffer, line);
+
+    printf("%s\n", buffer);
+
+    free(buffer);
+    free(line);
+    free(arrbuffer);
+    free(matbuffer);
+}
+
 
 int compareStatesAndSave(struct gameState *expc, 
                          struct gameState *resl, 
@@ -466,6 +643,19 @@ void printGscomp(struct gscomp *comp) {
 }
 
 
+int randomRangeVal(base, width) {
+    return floor(Random() * width) + base;
+}
+
+int randRangeVal(struct range* r) {
+    return r->base + floor(Random() * r->width);
+}
+
+int chanced(int percent) {
+    int p = floor(Random() * 100);
+    return p < percent;
+}
+
 /*   Input: Pointer to game state
  *  Output: 0 = success, 1 = failed (not possible to return 1 at the moment)
  * Summary: This function randomizes the given game state. All bytes of the 
@@ -476,22 +666,70 @@ void printGscomp(struct gscomp *comp) {
  *          generate random numbers
  */
 int randomizeGameState(struct gameState *state) {
-    int i;
+    int i, j;
 
-    // example from lecture
-    for (i = 0; i < sizeof(struct gameState); i++) {
-        ((char*)state)[i] = floor(Random() * 256);
+    struct range nsupply, 
+                 boolVal, 
+                 nplayers, 
+                 nphases, 
+                 nactions, 
+                 ncoins, 
+                 pileCounts, 
+                 wcard,
+                 nplayed;
+    nsupply.base = -10;  nsupply.width = 200;
+    boolVal.base = -1;   boolVal.width = 3;
+    nplayers.base = 0;   nplayers.width = MAX_PLAYERS;
+    nphases.base = -1;   nphases.width = 3;
+    nactions.base = -5;  nactions.width = 100;
+    ncoins.base = -20;   ncoins.width = 400;
+    pileCounts.base = 0; pileCounts.width = 200;
+    wcard.base = -2;     wcard.width = 30;
+    nplayed.base = 0;    nplayed.width = 400;
+
+
+    // number of players
+    state->numPlayers = randRangeVal(&nplayers);
+
+    // supply cards
+    for (i = 0; i < treasure_map+1; i++) {
+        state->supplyCount[i] = randRangeVal(&nsupply);
+    }
+    for (i = 0; i < treasure_map+1; i++) {
+        state->embargoTokens[i] = randRangeVal(&nsupply);
+    }
+    
+    // outpost booleans
+    state->outpostPlayed = randRangeVal(&boolVal);
+    state->outpostTurn = randRangeVal(&boolVal);
+    
+    // current player info
+    state->whoseTurn = randRangeVal(&nplayers);
+    state->phase = randRangeVal(&nphases);
+    state->numActions = randRangeVal(&nactions);
+    state->coins = randRangeVal(&ncoins);
+    state->numBuys = randRangeVal(&nactions);
+
+    // all player card piles
+    for (i = 0; i < MAX_PLAYERS; i++) {
+        state->handCount[i] = randRangeVal(&pileCounts);
+        state->deckCount[i] = randRangeVal(&pileCounts);
+        state->discardCount[i] = randRangeVal(&pileCounts);
+    }
+    for (i = 0; i < MAX_PLAYERS; i++) {
+        for (j = 0; j < MAX_DECK; j++) {
+            state->hand[i][j] = randRangeVal(&wcard);
+            state->deck[i][j] = randRangeVal(&wcard);
+            state->discard[i][j] = randRangeVal(&wcard);
+        }
     }
 
-    // adjust to avoid seg faults
-    state->numPlayers = floor(Random() * MAX_PLAYERS);
-    state->whoseTurn = floor(Random() * MAX_PLAYERS);
-    state->playedCardCount = floor(Random() * MAX_DECK);
-    for (i = 0; i < state->numPlayers; i++) {
-        state->deckCount[i] = floor(Random() * MAX_DECK);
-        state->discardCount[i] = floor(Random() * MAX_DECK);
-        state->handCount[i] = floor(Random() * MAX_HAND);
+    // played cards
+    state->playedCardCount = randRangeVal(&nplayed);
+    for (i = 0; i < MAX_DECK; i++) {
+        state->playedCards[i] = randRangeVal(&wcard);
     }
+    
 
     /* possible areas that may cause errors/invalid for game state
      * supplyCount: types of available and their supply # should be limited

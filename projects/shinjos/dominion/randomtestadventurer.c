@@ -12,6 +12,8 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
 
 
 
@@ -28,9 +30,13 @@ void randomInput(int *handPos, int *c1, int *c2, int *c3, struct gameState *stat
     // hand position
     *handPos = floor(Random() * state->handCount[state->whoseTurn]);
 
-    // place adventurer card in hand
-    // TODO: not random enough
-    state->hand[state->whoseTurn][*handPos] = adventurer;
+    state->handCount[state->whoseTurn] = randomRangeVal(10, 10);
+    state->deckCount[state->whoseTurn] = randomRangeVal(10, 30);
+    state->discardCount[state->whoseTurn] = randomRangeVal(10, 30);
+
+    if (chanced(95)) state->hand[state->whoseTurn][*handPos] = adventurer;
+    if (chanced(95)) state->phase = 0;
+    if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }
 
 // compute expected state from original state
@@ -39,7 +45,7 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
 
     // check if card can be played can be done
     if (expc->phase != ACTION_PHASE || expc->numActions < 1) return;
-    
+
     int i, j, card;
     int player = expc->whoseTurn;
     int origTop = expc->deckCount[player] - 1;
@@ -47,12 +53,12 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
     int treasures[2] = {0, 0};
 
     int newDeck[MAX_DECK];
-    int newDeckCount = 0;
+    int shuffledCount, newDeckCount = 0;
     
     
     // add treasures from deck
     while (expc->deckCount[player] > 0 && found < 2) {
-        card = expc->deck[player][expc->deckCount[player-1]];
+        card = expc->deck[player][expc->deckCount[player]-1];
         if (card == copper || card == silver || card == gold) {
             treasures[found++] = card;
             for (i = expc->deckCount[player]-1; i < origTop; i++) {
@@ -69,12 +75,12 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
 
         PutSeed(seed);
 
-        // NOTE: following the code for dominion.c shuffle function
+        // NOTE: the following code is from the dominion.c shuffle function
         // sort card in deck to ensure determinism
         qsort((void*)(expc->discard[player]), 
               expc->discardCount[player], 
               sizeof(int), 
-              compare);
+              compareInts);
         // randomly choose each card to get shuffled order
         while (expc->discardCount[player] > 0) {
             card = floor(Random() * expc->discardCount[player]);
@@ -84,6 +90,7 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
             }
             expc->discardCount[player]--;
         }
+        shuffledCount = newDeckCount;
         
         // add treasures from new deck
         for (i = newDeckCount-1; i >= 0 && found < 2; i--) {
@@ -95,18 +102,19 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
             }
         }
 
-        // now, all of deck needs to go into discard and [i+1, newDeckCount] of 
-        // newDeck needs to go into the discard pile as well
-        if (expc->deckCount[player] + (newDeckCount - i + 1) > MAX_DECK) 
-            printf("ERROR: seg fault imminent\n");
+        // printf("%d revealed from deck + %d revealed from shuffle = %d\n", origTop+1, newDeckCount-i+1, origTop + 1 + newDeckCount - i + 1);
+        assert(origTop + 1 + newDeckCount - i + 1 < MAX_DECK); // or else seg fault
         
-        while (expc->deckCount[player] > 0 && expc->discardCount[player] < MAX_DECK) {
-            expc->discard[player][expc->discardCount[player]++] = expc->deck[player][--expc->deckCount[player]];
+        // put revaled cards (still "in deck") into discard pile
+        while (origTop >= expc->deckCount[player] && expc->discardCount[player] < MAX_DECK) {
+            expc->discard[player][expc->discardCount[player]++] = expc->deck[player][origTop--];
         }
-        assert(expc->deckCount[player] == 0);
-        for (j = i+1; j < newDeckCount && expc->discardCount[player] < MAX_DECK; j++) {
+        assert(origTop == -1);
+        // put revealed cards from new deck into discard pile
+        for (j = newDeckCount-1; j > i && expc->discardCount[player] < MAX_DECK; j--) {
             expc->discard[player][expc->discardCount[player]++] = newDeck[j];
         }
+        assert(j == i);
 
         // transfer unrevealed new deck cards to deck
         for (j = 0; j <= i; j++) {
@@ -120,34 +128,62 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
         }
     }
 
-
-    // add found treasures to hand
+    // add found treasures to hand and compute total coins in hand
     for (i = 0; i < found; i++) {
         expc->hand[player][expc->handCount[player]++] = treasures[i];
-        expc->coins += treasures[i] - 3; // treasure card - 3 = its coin value
     }
+    int totalCoins = 0;
+    for (i = 0; i < expc->handCount[player]; i++) {
+        if (expc->hand[player][i] >= copper && expc->hand[player][i] <= gold) {
+            totalCoins += (expc->hand[player][i] - 3); // treasure card - 3 = its value
+        }
+    }
+    expc->coins = totalCoins;
+
+    // decrement actions
+    expc->numActions--;
     
 }
 
 int main(int argc, char const *argv[]) {
-    
-    const int NUM_TEST_CASES = 2;
-    int i;
+    const int NUM_TEST_CASES = 4095;
+    int i, passed = 0;
     int handPos, c1, c2, c3;
     struct gameState original, expected;
 
-    long seed = 1993;
+    int shuffleStream = 0, inputStream = 1;
+    long shuffleSeed = 1993, inputSeed = 1981;
 
+    // set up random number generator streams
+    SelectStream(shuffleStream);
+    PutSeed(shuffleSeed);
+    SelectStream(inputStream);
+    PutSeed(inputSeed);
+
+    // run test cases
     for (i = 0; i < NUM_TEST_CASES; i++) {
+        SelectStream(inputStream);
         randomInput(&handPos, &c1, &c2, &c3, &original);
-        oracle(&original, &expected, seed);
 
-        PutSeed(seed);
+        SelectStream(shuffleStream);
+        oracle(&original, &expected, shuffleSeed);
+
+        PutSeed(shuffleSeed);
         playCard(handPos, c1, c2, c3, &original);
         
-        compareStates(&expected, &original, 1, 100);
+        printf("Test Case %4d: ", i+1);
+        if (memcmp(&expected, &original, sizeof(struct gameState)) == 0) {
+            passed++;
+            printf("Passed\n");
+        } else {
+            printf("Failed\n");
+        }
+        // compareStates(&expected, &original, 0, 0);
+        // printf("\n\n\n");
     }
-    
+    printf("\n");
+
+    printf("%d test cases: %d passed, %d failed\n", NUM_TEST_CASES, passed, NUM_TEST_CASES-passed);
 
     return 0;
 }

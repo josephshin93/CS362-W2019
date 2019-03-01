@@ -96,7 +96,7 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 
 # random testing
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o domtest_helpers.o
-	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
+	gcc randomtestadventurer.c -o randomtestadventurer -g dominion.o rngs.o domtest_helpers.o $(CFLAGS)
 
 randomtestcard1: randomtestcard1.c dominion.o rngs.o domtest_helpers.o
 	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
@@ -107,6 +107,8 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o domtest_helpers.o
 randomtestadventurer.out: randomtestadventurer
 	echo "Adventurer Card Random Test:\n" > randomtestadventurer.out
 	./randomtestadventurer >> randomtestadventurer.out
+	echo >> randomtestadventurer.out
+	echo >> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 
 randomtestcard1.out: randomtestcard1
