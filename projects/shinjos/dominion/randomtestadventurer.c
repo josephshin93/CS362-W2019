@@ -143,6 +143,8 @@ void testOrcale(struct gameState *orig, struct gameState *expc, long seed) {
 
     // decrement actions
     expc->numActions--;
+
+    // TODO: move adventurer card to played pile?
     
 }
 
