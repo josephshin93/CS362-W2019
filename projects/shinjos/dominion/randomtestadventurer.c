@@ -148,6 +148,7 @@ void testOrcale(struct gameState *orig, struct gameState *expc, long seed) {
 
 
 int main(int argc, char const *argv[]) {
+    // NOTE: 4208th test case causes testing to "pause" - suspecting an infinite loop
     const int NUM_TEST_CASES = 4207, SHOW_FAIL_DETAILS = 0;
     int i, passed = 0;
     int handPos, c1, c2, c3;
@@ -188,6 +189,8 @@ int main(int argc, char const *argv[]) {
                 printf("\n");
             }
         }
+
+        shuffleSeed++;
     }
     printf("\n");
 
