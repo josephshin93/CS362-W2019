@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <assert.h>
 
 int compareInts(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -205,10 +206,10 @@ void printGameState(struct gameState *state, int indent) {
     free(matbuffer);
 }
 
-void printCurrentPlayerState(struct gameState *state) {
-    int player = state->whoseTurn;
+void printPlayerState(int player, struct gameState *state) {
+    assert(player >= 0 && player < state->numPlayers);
 
-    int linbufs = 25, arrbufs = 6000;
+    int linbufs = 25, arrbufs = 2048;
     char *linbuf = malloc(sizeof(char) * linbufs),
          *arrbuf = malloc(sizeof(char) * arrbufs);
 
@@ -238,10 +239,11 @@ void printCurrentPlayerState(struct gameState *state) {
     _1darrPrintLines("Discard", state->discard[player], state->discardCount[player], 0, arrbuf, arrbufs);
     printf("%s", arrbuf);
 
-    _singleValuePrintLine("Played Count", state->playedCardCount, 0, linbuf, linbufs);
-    printf("%s", linbuf);
-    _1darrPrintLines("Played", state->playedCards, state->playedCardCount, 0, arrbuf, arrbufs);
-    printf("%s", arrbuf);
+    // NOTE: needs ~6000 len char array
+    // _singleValuePrintLine("Played Count", state->playedCardCount, 0, linbuf, linbufs);
+    // printf("%s", linbuf);
+    // _1darrPrintLines("Played", state->playedCards, state->playedCardCount, 0, arrbuf, arrbufs);
+    // printf("%s", arrbuf);
     
 
     free(linbuf);

@@ -38,6 +38,14 @@ struct range {
   int width;
 };
 
+struct cardPlayInput {
+  int handPos;
+  int c1;
+  int c2;
+  int c3;
+  struct gameState state;
+};
+
 // color printing
 // #define CNRM "\x1B[0m"
 // #define CRED "\x1B[31m"
@@ -79,6 +87,6 @@ int randomRangeVa(int base, int width);
 int randomizeGameState(struct gameState *state);
 
 void printGameState(struct gameState *state, int indent);
-void printCurrentPlayerState(struct gameState *state);
+void printPlayerState(int player, struct gameState *state);
 
 #endif
