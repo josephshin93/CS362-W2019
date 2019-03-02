@@ -39,8 +39,9 @@ void randomInput(int *handPos, int *c1, int *c2, int *c3, struct gameState *stat
     if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }
 
+
 // compute expected state from original state
-void oracle(struct gameState *orig, struct gameState *expc, long seed) {
+void testOrcale(struct gameState *orig, struct gameState *expc, long seed) {
     memcpy(expc, orig, sizeof(struct gameState));
 
     // check if card can be played can be done
@@ -145,8 +146,9 @@ void oracle(struct gameState *orig, struct gameState *expc, long seed) {
     
 }
 
+
 int main(int argc, char const *argv[]) {
-    const int NUM_TEST_CASES = 4095;
+    const int NUM_TEST_CASES = 4207, SHOW_FAIL_DETAILS = 0;
     int i, passed = 0;
     int handPos, c1, c2, c3;
     struct gameState original, expected;
@@ -162,24 +164,30 @@ int main(int argc, char const *argv[]) {
 
     // run test cases
     for (i = 0; i < NUM_TEST_CASES; i++) {
+        // generate random inputs
         SelectStream(inputStream);
         randomInput(&handPos, &c1, &c2, &c3, &original);
 
+        // generate expected output
         SelectStream(shuffleStream);
-        oracle(&original, &expected, shuffleSeed);
+        testOrcale(&original, &expected, shuffleSeed);
 
+        // generate result output
         PutSeed(shuffleSeed);
         playCard(handPos, c1, c2, c3, &original);
         
+        // print testing information
         printf("Test Case %4d: ", i+1);
         if (memcmp(&expected, &original, sizeof(struct gameState)) == 0) {
             passed++;
             printf("Passed\n");
         } else {
             printf("Failed\n");
+            if (SHOW_FAIL_DETAILS) {
+                compareStates(&expected, &original, 0, 0);
+                printf("\n");
+            }
         }
-        // compareStates(&expected, &original, 0, 0);
-        // printf("\n\n\n");
     }
     printf("\n");
 

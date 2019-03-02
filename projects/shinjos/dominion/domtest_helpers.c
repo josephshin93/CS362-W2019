@@ -205,6 +205,49 @@ void printGameState(struct gameState *state, int indent) {
     free(matbuffer);
 }
 
+void printCurrentPlayerState(struct gameState *state) {
+    int player = state->whoseTurn;
+
+    int linbufs = 25, arrbufs = 6000;
+    char *linbuf = malloc(sizeof(char) * linbufs),
+         *arrbuf = malloc(sizeof(char) * arrbufs);
+
+    printf("State of player %d\n", player);
+    
+    _singleValuePrintLine("Phase", state->phase, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _singleValuePrintLine("Actions", state->numActions, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _singleValuePrintLine("Coins", state->coins, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _singleValuePrintLine("Buys", state->numBuys, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    
+    _singleValuePrintLine("Hand Count", state->handCount[player], 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _1darrPrintLines("Hand", state->hand[player], state->handCount[player], 0, arrbuf, arrbufs);
+    printf("%s", arrbuf);
+
+    _singleValuePrintLine("Deck Count", state->deckCount[player], 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _1darrPrintLines("Deck", state->deck[player], state->deckCount[player], 0, arrbuf, arrbufs);
+    printf("%s", arrbuf);
+
+    _singleValuePrintLine("Discard Count", state->discardCount[player], 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _1darrPrintLines("Discard", state->discard[player], state->discardCount[player], 0, arrbuf, arrbufs);
+    printf("%s", arrbuf);
+
+    _singleValuePrintLine("Played Count", state->playedCardCount, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    _1darrPrintLines("Played", state->playedCards, state->playedCardCount, 0, arrbuf, arrbufs);
+    printf("%s", arrbuf);
+    
+
+    free(linbuf);
+    free(arrbuf);
+}
+
 
 int compareStatesAndSave(struct gameState *expc, 
                          struct gameState *resl, 

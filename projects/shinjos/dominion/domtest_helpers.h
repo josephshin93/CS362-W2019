@@ -79,5 +79,6 @@ int randomRangeVa(int base, int width);
 int randomizeGameState(struct gameState *state);
 
 void printGameState(struct gameState *state, int indent);
+void printCurrentPlayerState(struct gameState *state);
 
 #endif
