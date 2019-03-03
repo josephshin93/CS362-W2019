@@ -725,7 +725,7 @@ int randValInSRange(struct range* r) {
  *          return true, and a 52% chance of returning false.
  */
 int chanced(int percent) {
-    p = randValInRange(0, 101);
+    int p = randValInRange(0, 101);
     return p < percent;
 }
 
