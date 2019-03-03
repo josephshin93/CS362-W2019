@@ -102,7 +102,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o domtest_helpers.o
 	gcc randomtestcard1.c -o randomtestcard1 -g dominion.o rngs.o domtest_helpers.o $(CFLAGS)
 
 randomtestcard2: randomtestcard2.c dominion.o rngs.o domtest_helpers.o
-	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o domtest_helpers.o $(CFLAGS)
+	gcc randomtestcard2.c -o randomtestcard2 -g dominion.o rngs.o domtest_helpers.o $(CFLAGS)
 
 randomtestadventurer.out: randomtestadventurer
 	echo "Adventurer Card Random Test:\n" > randomtestadventurer.out
@@ -121,6 +121,8 @@ randomtestcard1.out: randomtestcard1
 randomtestcard2.out: randomtestcard2
 	echo "Card 2 Random Test:\n" > randomtestcard2.out
 	./randomtestcard2 >> randomtestcard2.out
+	echo >> randomtestcard2.out
+	echo >> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
 
 

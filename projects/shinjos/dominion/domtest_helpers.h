@@ -81,7 +81,7 @@ int compareStatesAndSave(struct gameState *expc,
 void printGscomp(struct gscomp *comp);
 
 int chanced(int percent);
-int randValInRange(base, width);
+int randValInRange(int base, int width);
 int randValInSRange(struct range* r);
 int randomizeGameState(struct gameState *state);
 

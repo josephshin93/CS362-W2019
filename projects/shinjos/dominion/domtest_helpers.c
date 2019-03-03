@@ -212,6 +212,8 @@ void printPlayerState(int player, struct gameState *state) {
     int linbufs = 25, arrbufs = 2048;
     char *linbuf = malloc(sizeof(char) * linbufs),
          *arrbuf = malloc(sizeof(char) * arrbufs);
+    int *pctail;
+    const int PC_TAIL_SIZE = 8;
 
     printf("State of player %d\n", player);
     
@@ -239,11 +241,12 @@ void printPlayerState(int player, struct gameState *state) {
     _1darrPrintLines("Discard", state->discard[player], state->discardCount[player], 0, arrbuf, arrbufs);
     printf("%s", arrbuf);
 
-    // NOTE: needs ~6000 len char array
-    // _singleValuePrintLine("Played Count", state->playedCardCount, 0, linbuf, linbufs);
-    // printf("%s", linbuf);
-    // _1darrPrintLines("Played", state->playedCards, state->playedCardCount, 0, arrbuf, arrbufs);
-    // printf("%s", arrbuf);
+    _singleValuePrintLine("Played Count", state->playedCardCount, 0, linbuf, linbufs);
+    printf("%s", linbuf);
+    // NOTE: only 8 (4 at end and 4 after end)
+    pctail = state->playedCards + (state->playedCardCount - 4);
+    _1darrPrintLines("Played", pctail, PC_TAIL_SIZE, 0, arrbuf, arrbufs);
+    printf("%s", arrbuf);
     
 
     free(linbuf);
@@ -697,7 +700,7 @@ void printGscomp(struct gscomp *comp) {
  *          ANSI C library for multi-stream random number generation, so set 
  *          seeds and streams appropriately before use.
  */
-int randValInRange(base, width) {
+int randValInRange(int base, int width) {
     int random = floor(Random() * width);
     if (random == width) random--;
     return base + random;
@@ -752,7 +755,7 @@ int randomizeGameState(struct gameState *state) {
                  nplayed;
     nsupply.base = -10;  nsupply.width = 200;
     boolVal.base = -1;   boolVal.width = 3;
-    nplayers.base = 0;   nplayers.width = MAX_PLAYERS;
+    nplayers.base = 1;   nplayers.width = MAX_PLAYERS;
     nphases.base = -1;   nphases.width = 3;
     nactions.base = -5;  nactions.width = 100;
     ncoins.base = -20;   ncoins.width = 400;
@@ -761,7 +764,7 @@ int randomizeGameState(struct gameState *state) {
     nplayed.base = 0;    nplayed.width = 400;
 
 
-    // number of players
+    // number of players [1, 4]
     state->numPlayers = randValInSRange(&nplayers);
 
     // supply cards
@@ -777,7 +780,7 @@ int randomizeGameState(struct gameState *state) {
     state->outpostTurn = randValInSRange(&boolVal);
     
     // current player info
-    state->whoseTurn = randValInSRange(&nplayers);
+    state->whoseTurn = randValInRange(0, state->numPlayers);
     state->phase = randValInSRange(&nphases);
     state->numActions = randValInSRange(&nactions);
     state->coins = randValInSRange(&ncoins);
