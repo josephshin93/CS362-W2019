@@ -17,7 +17,7 @@
 
 
 
-// generate random values used to play adventure card
+// generate random values used to play minion card
 void randomInput(struct cardPlayInput *input) {
     int i;
     
