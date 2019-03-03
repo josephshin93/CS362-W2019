@@ -109,21 +109,33 @@ randomtestadventurer.out: randomtestadventurer
 	./randomtestadventurer >> randomtestadventurer.out
 	echo >> randomtestadventurer.out
 	echo >> randomtestadventurer.out
-	gcov -b dominion.c >> randomtestadventurer.out
+	gcov -b -f dominion.c >> randomtestadventurer.out
 
 randomtestcard1.out: randomtestcard1
 	echo "Card 1 Random Test:\n" > randomtestcard1.out
 	./randomtestcard1 >> randomtestcard1.out
 	echo >> randomtestcard1.out
 	echo >> randomtestcard1.out
-	gcov -b dominion.c >> randomtestcard1.out
+	gcov -b -f dominion.c >> randomtestcard1.out
 
 randomtestcard2.out: randomtestcard2
 	echo "Card 2 Random Test:\n" > randomtestcard2.out
 	./randomtestcard2 >> randomtestcard2.out
 	echo >> randomtestcard2.out
 	echo >> randomtestcard2.out
-	gcov -b dominion.c >> randomtestcard2.out
+	gcov -b -f dominion.c >> randomtestcard2.out
+
+randomtests:
+	make clean
+	make randomtestadventurer.out
+	cp dominion.c.gcov testing_snapshots/adventurerrandtest.txt
+	make clean
+	make randomtestcard1.out
+	cp dominion.c.gcov testing_snapshots/minionrandtest.txt
+	make clean
+	make randomtestcard2.out
+	cp dominion.c.gcov testing_snapshots/smithyrandtest.txt
+
 
 
 
