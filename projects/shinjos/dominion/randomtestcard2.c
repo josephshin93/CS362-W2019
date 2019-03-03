@@ -51,8 +51,10 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc, long seed) 
 
     memcpy(expc, orig, sizeof(struct gameState));
 
+    const int MAX_DRAW = 3;
     int i, j, card, drawn = 0, totalCoins = 0;
     int player = expc->whoseTurn;
+    int drawnCards[MAX_DRAW];
 
     // check if card can be played can be done
     if (expc->phase != ACTION_PHASE || 
@@ -60,13 +62,14 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc, long seed) 
         expc->hand[player][input->handPos] != smithy) return;
 
     // draw from deck
-    for (; expc->deckCount[player] > 0 && drawn < 3; expc->deckCount[player]--) {
-        expc->hand[player][expc->handCount[player]++] = expc->deck[player][expc->deckCount[player]-1];
-        drawn++;
+    for (; expc->deckCount[player] > 0 && drawn < MAX_DRAW; expc->deckCount[player]--) {
+        drawnCards[drawn++] = expc->deck[player][expc->deckCount[player]-1];
+        // expc->hand[player][expc->handCount[player]++] = expc->deck[player][expc->deckCount[player]-1];
+        // drawn++;
     }
 
     // shuffle discard and add to deck if not enough has been drawn
-    if (drawn < 3) {
+    if (drawn < MAX_DRAW) {
         assert(expc->deckCount[player] == 0);
         
         PutSeed(seed);
@@ -81,19 +84,22 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc, long seed) 
         while (expc->discardCount[player] > 0) {
             card = floor(Random() * expc->discardCount[player]);
             expc->deck[player][expc->deckCount[player]++] = expc->discard[player][card];
-            // NOTE: seems like whatever helper function smithy used to shuffle and 
-            //       move to deck casues any removed cards to be -1, is this correct behavior?
             for (i = card; i < expc->discardCount[player]-1; i++) {
                 expc->discard[player][i] = expc->discard[player][i+1];
             }
             expc->discardCount[player]--;
+            // NOTE: seems like whatever helper function smithy used to shuffle and 
+            //       move to deck casues any removed cards to be -1, does not seem 
+            //       to be incorrect behavior
+            expc->discard[player][expc->discardCount[player]] = -1;
         }
         assert(expc->discardCount[player] == 0);
         
         // draw from new deck
         for (; expc->deckCount[player] > 0 && drawn < 3; expc->deckCount[player]--) {
-            expc->hand[player][expc->handCount[player]++] = expc->deck[player][expc->deckCount[player]-1];
-            drawn++;
+            drawnCards[drawn++] = expc->deck[player][expc->deckCount[player]-1];
+            // expc->hand[player][expc->handCount[player]++] = expc->deck[player][expc->deckCount[player]-1];
+            // drawn++;
         }
     }
 
@@ -102,10 +108,14 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc, long seed) 
     //       card goes into the spot that the smithy card is
     assert(input->handPos >= 0 && input->handPos < expc->handCount[player]);
     assert(expc->hand[player][input->handPos] == smithy);
-    for (i = input->handPos; i < expc->handCount[player]-1; i++) {
-        expc->hand[player][i] = expc->hand[player][i+1];
+    for (i = 0; i < drawn-1; i++) {
+        expc->hand[player][expc->handCount[player]++] = drawnCards[i];
     }
-    expc->handCount[player]--;
+    expc->hand[player][input->handPos] = drawnCards[drawn-1];
+    // for (i = input->handPos; i < expc->handCount[player]-1; i++) {
+    //     expc->hand[player][i] = expc->hand[player][i+1];
+    // }
+    // expc->handCount[player]--;
     expc->playedCards[expc->playedCardCount++] = smithy;
 
     // update the coins
