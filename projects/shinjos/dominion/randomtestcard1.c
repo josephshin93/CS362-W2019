@@ -29,7 +29,7 @@ void randomInput(struct cardPlayInput *input) {
         input->c1 = 1;
         input->c2 = 0;
     }
-    input->c3 = floor(Random() * 2);
+    input->c3 = 0;
 
     // random game state
     struct gameState *state = &input->state;

@@ -688,16 +688,44 @@ void printGscomp(struct gscomp *comp) {
 }
 
 
-int randomRangeVal(base, width) {
-    return floor(Random() * width) + base;
+/*   Input: base = lowest desired integer, width = number of integers in range
+ *  Output: random integer in given range
+ * Summary: This function returns a random integer within a given range, which 
+ *          is defined by the lowest possible integer in the range (base), 
+ *          and the number of integers in the range (width). 
+ *          IMPORTANT: this function utilizes the Random() function from the 
+ *          ANSI C library for multi-stream random number generation, so set 
+ *          seeds and streams appropriately before use.
+ */
+int randValInRange(base, width) {
+    int random = floor(Random() * width);
+    if (random == width) random--;
+    return base + random;
 }
 
-int randRangeVal(struct range* r) {
-    return r->base + floor(Random() * r->width);
+/*   Input: r = pointer to range struct 
+ *  Output: random integer in given range
+ * Summary: This function returns a random integer within a given range, which 
+ *          is defined by the lowest possible integer in the range (r->base), 
+ *          and the number of integers in the range (r->width). 
+ *          IMPORTANT: this function utilizes the Random() function from the 
+ *          ANSI C library for multi-stream random number generation, so set 
+ *          seeds and streams appropriately before use.
+ */
+int randValInSRange(struct range* r) {
+    int random = floor(Random() * r->width);
+    if (random == r->width) random--;
+    return r->base + random;
 }
 
+/*   Input: percent = integer [0, 100] representing percent chance
+ *  Output: 0 = false, 1 = true
+ * Summary: This function simply return true (1) or false (0) based on a 
+ *          percent change. So, chanced(48) will have a 48% chance of 
+ *          return true, and a 52% chance of returning false.
+ */
 int chanced(int percent) {
-    int p = floor(Random() * 100);
+    p = randValInRange(0, 101);
     return p < percent;
 }
 
@@ -734,45 +762,45 @@ int randomizeGameState(struct gameState *state) {
 
 
     // number of players
-    state->numPlayers = randRangeVal(&nplayers);
+    state->numPlayers = randValInSRange(&nplayers);
 
     // supply cards
     for (i = 0; i < treasure_map+1; i++) {
-        state->supplyCount[i] = randRangeVal(&nsupply);
+        state->supplyCount[i] = randValInSRange(&nsupply);
     }
     for (i = 0; i < treasure_map+1; i++) {
-        state->embargoTokens[i] = randRangeVal(&nsupply);
+        state->embargoTokens[i] = randValInSRange(&nsupply);
     }
     
     // outpost booleans
-    state->outpostPlayed = randRangeVal(&boolVal);
-    state->outpostTurn = randRangeVal(&boolVal);
+    state->outpostPlayed = randValInSRange(&boolVal);
+    state->outpostTurn = randValInSRange(&boolVal);
     
     // current player info
-    state->whoseTurn = randRangeVal(&nplayers);
-    state->phase = randRangeVal(&nphases);
-    state->numActions = randRangeVal(&nactions);
-    state->coins = randRangeVal(&ncoins);
-    state->numBuys = randRangeVal(&nactions);
+    state->whoseTurn = randValInSRange(&nplayers);
+    state->phase = randValInSRange(&nphases);
+    state->numActions = randValInSRange(&nactions);
+    state->coins = randValInSRange(&ncoins);
+    state->numBuys = randValInSRange(&nactions);
 
     // all player card piles
     for (i = 0; i < MAX_PLAYERS; i++) {
-        state->handCount[i] = randRangeVal(&pileCounts);
-        state->deckCount[i] = randRangeVal(&pileCounts);
-        state->discardCount[i] = randRangeVal(&pileCounts);
+        state->handCount[i] = randValInSRange(&pileCounts);
+        state->deckCount[i] = randValInSRange(&pileCounts);
+        state->discardCount[i] = randValInSRange(&pileCounts);
     }
     for (i = 0; i < MAX_PLAYERS; i++) {
         for (j = 0; j < MAX_DECK; j++) {
-            state->hand[i][j] = randRangeVal(&wcard);
-            state->deck[i][j] = randRangeVal(&wcard);
-            state->discard[i][j] = randRangeVal(&wcard);
+            state->hand[i][j] = randValInSRange(&wcard);
+            state->deck[i][j] = randValInSRange(&wcard);
+            state->discard[i][j] = randValInSRange(&wcard);
         }
     }
 
     // played cards
-    state->playedCardCount = randRangeVal(&nplayed);
+    state->playedCardCount = randValInSRange(&nplayed);
     for (i = 0; i < MAX_DECK; i++) {
-        state->playedCards[i] = randRangeVal(&wcard);
+        state->playedCards[i] = randValInSRange(&wcard);
     }
     
 

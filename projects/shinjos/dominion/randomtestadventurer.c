@@ -20,19 +20,19 @@
 // generate random values used to play adventure card
 void randomInput(int *handPos, int *c1, int *c2, int *c3, struct gameState *state) {
     // random choice
-    *c1 = floor(Random() * 2);
-    *c2 = floor(Random() * 2);
-    *c3 = floor(Random() * 2);
+    *c1 = randValInRange(0, 2);
+    *c2 = randValInRange(0, 2);
+    *c3 = randValInRange(0, 2);
 
     // random game state
     randomizeGameState(state);
 
-    state->handCount[state->whoseTurn] = randomRangeVal(10, 10);
-    state->deckCount[state->whoseTurn] = randomRangeVal(10, 30);
-    state->discardCount[state->whoseTurn] = randomRangeVal(10, 30);
+    state->handCount[state->whoseTurn] = randValInRange(10, 10);
+    state->deckCount[state->whoseTurn] = randValInRange(10, 30);
+    state->discardCount[state->whoseTurn] = randValInRange(10, 30);
 
     // place adventurer card in hand
-    *handPos = floor(Random() * (state->handCount[state->whoseTurn] - 1));
+    *handPos = randValInRange(0, state->handCount[state->whoseTurn]);    
     state->hand[state->whoseTurn][*handPos] = adventurer;
 
     // ~90% chance that card will be chosen
