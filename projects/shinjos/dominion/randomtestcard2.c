@@ -132,7 +132,7 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc, long seed) 
 
 
 int main(int argc, char const *argv[]) {
-    const int NUM_TEST_CASES = 5, SHOW_FAIL_DETAILS = 1;
+    const int NUM_TEST_CASES = 5000, SHOW_FAIL_DETAILS = 1;
     int i, j, passed = 0;
     struct cardPlayInput input;
     struct gameState expected;
