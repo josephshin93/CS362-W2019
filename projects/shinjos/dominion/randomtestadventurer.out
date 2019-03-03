@@ -123,7 +123,7 @@ Test Case  120: Failed
 Test Case  121: Failed
 Test Case  122: Failed
 Test Case  123: Failed
-Test Case  124: Failed
+Test Case  124: Passed
 Test Case  125: Failed
 Test Case  126: Failed
 Test Case  127: Failed
@@ -495,7 +495,7 @@ Test Case  492: Failed
 Test Case  493: Failed
 Test Case  494: Failed
 Test Case  495: Failed
-Test Case  496: Failed
+Test Case  496: Passed
 Test Case  497: Failed
 Test Case  498: Failed
 Test Case  499: Failed
@@ -670,7 +670,7 @@ Test Case  667: Failed
 Test Case  668: Failed
 Test Case  669: Failed
 Test Case  670: Failed
-Test Case  671: Failed
+Test Case  671: Passed
 Test Case  672: Failed
 Test Case  673: Failed
 Test Case  674: Failed
@@ -711,7 +711,7 @@ Test Case  708: Failed
 Test Case  709: Failed
 Test Case  710: Failed
 Test Case  711: Failed
-Test Case  712: Failed
+Test Case  712: Passed
 Test Case  713: Failed
 Test Case  714: Failed
 Test Case  715: Failed
@@ -805,7 +805,7 @@ Test Case  802: Failed
 Test Case  803: Failed
 Test Case  804: Failed
 Test Case  805: Failed
-Test Case  806: Failed
+Test Case  806: Passed
 Test Case  807: Failed
 Test Case  808: Failed
 Test Case  809: Failed
@@ -830,7 +830,7 @@ Test Case  827: Failed
 Test Case  828: Failed
 Test Case  829: Failed
 Test Case  830: Failed
-Test Case  831: Failed
+Test Case  831: Passed
 Test Case  832: Failed
 Test Case  833: Failed
 Test Case  834: Failed
@@ -907,7 +907,7 @@ Test Case  904: Failed
 Test Case  905: Failed
 Test Case  906: Failed
 Test Case  907: Failed
-Test Case  908: Failed
+Test Case  908: Passed
 Test Case  909: Failed
 Test Case  910: Failed
 Test Case  911: Failed
@@ -954,7 +954,7 @@ Test Case  951: Failed
 Test Case  952: Failed
 Test Case  953: Failed
 Test Case  954: Failed
-Test Case  955: Failed
+Test Case  955: Passed
 Test Case  956: Failed
 Test Case  957: Failed
 Test Case  958: Failed
@@ -1026,7 +1026,7 @@ Test Case 1023: Failed
 Test Case 1024: Failed
 Test Case 1025: Failed
 Test Case 1026: Failed
-Test Case 1027: Failed
+Test Case 1027: Passed
 Test Case 1028: Failed
 Test Case 1029: Failed
 Test Case 1030: Failed
@@ -1474,7 +1474,7 @@ Test Case 1471: Failed
 Test Case 1472: Failed
 Test Case 1473: Failed
 Test Case 1474: Failed
-Test Case 1475: Failed
+Test Case 1475: Passed
 Test Case 1476: Failed
 Test Case 1477: Failed
 Test Case 1478: Failed
@@ -1490,7 +1490,7 @@ Test Case 1487: Failed
 Test Case 1488: Failed
 Test Case 1489: Failed
 Test Case 1490: Failed
-Test Case 1491: Failed
+Test Case 1491: Passed
 Test Case 1492: Failed
 Test Case 1493: Failed
 Test Case 1494: Failed
@@ -1586,7 +1586,7 @@ Test Case 1583: Failed
 Test Case 1584: Failed
 Test Case 1585: Failed
 Test Case 1586: Failed
-Test Case 1587: Failed
+Test Case 1587: Passed
 Test Case 1588: Failed
 Test Case 1589: Failed
 Test Case 1590: Failed
@@ -1906,7 +1906,7 @@ Test Case 1903: Failed
 Test Case 1904: Failed
 Test Case 1905: Failed
 Test Case 1906: Failed
-Test Case 1907: Failed
+Test Case 1907: Passed
 Test Case 1908: Failed
 Test Case 1909: Failed
 Test Case 1910: Passed
@@ -2097,7 +2097,7 @@ Test Case 2094: Failed
 Test Case 2095: Failed
 Test Case 2096: Failed
 Test Case 2097: Failed
-Test Case 2098: Failed
+Test Case 2098: Passed
 Test Case 2099: Failed
 Test Case 2100: Failed
 Test Case 2101: Failed
@@ -2155,7 +2155,7 @@ Test Case 2152: Failed
 Test Case 2153: Failed
 Test Case 2154: Failed
 Test Case 2155: Failed
-Test Case 2156: Failed
+Test Case 2156: Passed
 Test Case 2157: Failed
 Test Case 2158: Failed
 Test Case 2159: Failed
@@ -2227,7 +2227,7 @@ Test Case 2224: Failed
 Test Case 2225: Failed
 Test Case 2226: Failed
 Test Case 2227: Failed
-Test Case 2228: Failed
+Test Case 2228: Passed
 Test Case 2229: Failed
 Test Case 2230: Failed
 Test Case 2231: Failed
@@ -2483,7 +2483,7 @@ Test Case 2480: Failed
 Test Case 2481: Failed
 Test Case 2482: Failed
 Test Case 2483: Failed
-Test Case 2484: Failed
+Test Case 2484: Passed
 Test Case 2485: Failed
 Test Case 2486: Failed
 Test Case 2487: Failed
@@ -3005,7 +3005,7 @@ Test Case 3002: Failed
 Test Case 3003: Failed
 Test Case 3004: Failed
 Test Case 3005: Failed
-Test Case 3006: Failed
+Test Case 3006: Passed
 Test Case 3007: Failed
 Test Case 3008: Failed
 Test Case 3009: Failed
@@ -3035,7 +3035,7 @@ Test Case 3032: Failed
 Test Case 3033: Failed
 Test Case 3034: Failed
 Test Case 3035: Failed
-Test Case 3036: Failed
+Test Case 3036: Passed
 Test Case 3037: Passed
 Test Case 3038: Failed
 Test Case 3039: Failed
@@ -3134,7 +3134,7 @@ Test Case 3131: Failed
 Test Case 3132: Failed
 Test Case 3133: Failed
 Test Case 3134: Failed
-Test Case 3135: Failed
+Test Case 3135: Passed
 Test Case 3136: Failed
 Test Case 3137: Failed
 Test Case 3138: Failed
@@ -3302,7 +3302,7 @@ Test Case 3299: Failed
 Test Case 3300: Failed
 Test Case 3301: Failed
 Test Case 3302: Failed
-Test Case 3303: Failed
+Test Case 3303: Passed
 Test Case 3304: Failed
 Test Case 3305: Failed
 Test Case 3306: Failed
@@ -3441,7 +3441,7 @@ Test Case 3438: Failed
 Test Case 3439: Failed
 Test Case 3440: Failed
 Test Case 3441: Failed
-Test Case 3442: Failed
+Test Case 3442: Passed
 Test Case 3443: Failed
 Test Case 3444: Failed
 Test Case 3445: Failed
@@ -3512,7 +3512,7 @@ Test Case 3509: Failed
 Test Case 3510: Failed
 Test Case 3511: Failed
 Test Case 3512: Failed
-Test Case 3513: Failed
+Test Case 3513: Passed
 Test Case 3514: Failed
 Test Case 3515: Failed
 Test Case 3516: Failed
@@ -3678,7 +3678,7 @@ Test Case 3675: Failed
 Test Case 3676: Failed
 Test Case 3677: Failed
 Test Case 3678: Failed
-Test Case 3679: Failed
+Test Case 3679: Passed
 Test Case 3680: Failed
 Test Case 3681: Failed
 Test Case 3682: Failed
@@ -3695,7 +3695,7 @@ Test Case 3692: Failed
 Test Case 3693: Failed
 Test Case 3694: Failed
 Test Case 3695: Failed
-Test Case 3696: Failed
+Test Case 3696: Passed
 Test Case 3697: Failed
 Test Case 3698: Failed
 Test Case 3699: Failed
@@ -3774,7 +3774,7 @@ Test Case 3771: Failed
 Test Case 3772: Failed
 Test Case 3773: Failed
 Test Case 3774: Failed
-Test Case 3775: Failed
+Test Case 3775: Passed
 Test Case 3776: Failed
 Test Case 3777: Failed
 Test Case 3778: Failed
@@ -3880,7 +3880,7 @@ Test Case 3877: Failed
 Test Case 3878: Passed
 Test Case 3879: Failed
 Test Case 3880: Passed
-Test Case 3881: Failed
+Test Case 3881: Passed
 Test Case 3882: Passed
 Test Case 3883: Failed
 Test Case 3884: Failed
@@ -4120,7 +4120,7 @@ Test Case 4117: Failed
 Test Case 4118: Failed
 Test Case 4119: Failed
 Test Case 4120: Failed
-Test Case 4121: Failed
+Test Case 4121: Passed
 Test Case 4122: Failed
 Test Case 4123: Failed
 Test Case 4124: Failed
@@ -4208,7 +4208,7 @@ Test Case 4205: Failed
 Test Case 4206: Failed
 Test Case 4207: Failed
 
-4207 test cases: 199 passed, 4008 failed
+4207 test cases: 227 passed, 3980 failed
 
 
 File 'dominion.c'
