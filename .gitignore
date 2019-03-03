@@ -29,6 +29,9 @@ projects/shinjos/dominion/randomtestcard2
 # trials
 projects/shinjos/dominion/tryrand
 projects/shinjos/dominion/tryRandom.c
+# operations
+projects/shinjos/dominion/randtestall
+projects/shinjos/dominion/testing_snapshots/*
 
 # final project
 FinalProject/**/.gitignore
