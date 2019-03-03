@@ -47,7 +47,7 @@ void randomInput(struct cardPlayInput *input) {
     }
 
     // hand position
-    input->handPos = floor(Random() * state->handCount[state->whoseTurn]);
+    input->handPos = randValInRange(0, state->handCount[state->whoseTurn]);
 
     // ~90% that card will be played
     state->hand[state->whoseTurn][input->handPos] = minion;
