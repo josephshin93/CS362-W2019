@@ -151,16 +151,16 @@ int main(int argc, char const *argv[]) {
         // generate random inputs
         SelectStream(inputStream);
         randomInput(&input);
-        printf("\n\nRANDOMIZED INPUT STATE\n");
-        printf("Number of players: %d\n", input.state.numPlayers);
-        printPlayerState(input.state.whoseTurn, &input.state);
+        // printf("\n\nRANDOMIZED INPUT STATE\n");
+        // printf("Number of players: %d\n", input.state.numPlayers);
+        // printPlayerState(input.state.whoseTurn, &input.state);
 
         // generate expected output
         SelectStream(shuffleStream);
         testOrcale(&input, &expected, shuffleSeed);
-        printf("\nEXPECTED STATE FROM ORACLE\n");
-        printf("Number of players: %d\n", expected.numPlayers);
-        printPlayerState(expected.whoseTurn, &expected);
+        // printf("\nEXPECTED STATE FROM ORACLE\n");
+        // printf("Number of players: %d\n", expected.numPlayers);
+        // printPlayerState(expected.whoseTurn, &expected);
 
         // generate result output
         PutSeed(shuffleSeed);
@@ -174,7 +174,7 @@ int main(int argc, char const *argv[]) {
         } else {
             printf("Failed\n");
             if (SHOW_FAIL_DETAILS) {
-                compareStates(&expected, &input.state, 1, 15);
+                compareStates(&expected, &input.state, 0, 0);
                 printf("\n");
             }
         }
