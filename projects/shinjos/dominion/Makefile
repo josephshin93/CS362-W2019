@@ -106,21 +106,21 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o domtest_helpers.o
 
 randomtestadventurer.out: randomtestadventurer
 	echo "Adventurer Card Random Test:\n" > randomtestadventurer.out
-	./randomtestadventurer >> randomtestadventurer.out
+	time ./randomtestadventurer >> randomtestadventurer.out
 	echo >> randomtestadventurer.out
 	echo >> randomtestadventurer.out
 	gcov -b -f dominion.c >> randomtestadventurer.out
 
 randomtestcard1.out: randomtestcard1
 	echo "Card 1 Random Test:\n" > randomtestcard1.out
-	./randomtestcard1 >> randomtestcard1.out
+	time ./randomtestcard1 >> randomtestcard1.out
 	echo >> randomtestcard1.out
 	echo >> randomtestcard1.out
 	gcov -b -f dominion.c >> randomtestcard1.out
 
 randomtestcard2.out: randomtestcard2
 	echo "Card 2 Random Test:\n" > randomtestcard2.out
-	./randomtestcard2 >> randomtestcard2.out
+	time ./randomtestcard2 >> randomtestcard2.out
 	echo >> randomtestcard2.out
 	echo >> randomtestcard2.out
 	gcov -b -f dominion.c >> randomtestcard2.out
