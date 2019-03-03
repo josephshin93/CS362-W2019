@@ -129,10 +129,12 @@ randomtests:
 	make clean
 	make randomtestadventurer.out
 	cp dominion.c.gcov testing_snapshots/adventurerrandtest.txt
-	make clean
+	
+	rm dominion.o *.gcov *.gcda *.gcno
 	make randomtestcard1.out
 	cp dominion.c.gcov testing_snapshots/minionrandtest.txt
-	make clean
+	
+	rm dominion.o *.gcov *.gcda *.gcno
 	make randomtestcard2.out
 	cp dominion.c.gcov testing_snapshots/smithyrandtest.txt
 
