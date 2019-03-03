@@ -27,28 +27,32 @@ void randomInput(int *handPos, int *c1, int *c2, int *c3, struct gameState *stat
     // random game state
     randomizeGameState(state);
 
-    // hand position
-    *handPos = floor(Random() * state->handCount[state->whoseTurn]);
-
     state->handCount[state->whoseTurn] = randomRangeVal(10, 10);
     state->deckCount[state->whoseTurn] = randomRangeVal(10, 30);
     state->discardCount[state->whoseTurn] = randomRangeVal(10, 30);
 
-    if (chanced(95)) state->hand[state->whoseTurn][*handPos] = adventurer;
+    // place adventurer card in hand
+    *handPos = floor(Random() * (state->handCount[state->whoseTurn] - 1));
+    state->hand[state->whoseTurn][*handPos] = adventurer;
+
+    // ~90% chance that card will be chosen
     if (chanced(95)) state->phase = 0;
     if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }
 
 
 // compute expected state from original state
-void testOrcale(struct gameState *orig, struct gameState *expc, long seed) {
+void testOrcale(int handPos, struct gameState *orig, struct gameState *expc, long seed) {
     memcpy(expc, orig, sizeof(struct gameState));
 
+    int player = expc->whoseTurn;
+
     // check if card can be played can be done
-    if (expc->phase != ACTION_PHASE || expc->numActions < 1) return;
+    if (expc->phase != ACTION_PHASE || 
+        expc->numActions < 1 || 
+        expc->hand[player][handPos] != adventurer) return;    
 
     int i, j, card;
-    int player = expc->whoseTurn;
     int origTop = expc->deckCount[player] - 1;
     int found = 0;
     int treasures[2] = {0, 0};
@@ -144,8 +148,13 @@ void testOrcale(struct gameState *orig, struct gameState *expc, long seed) {
     // decrement actions
     expc->numActions--;
 
-    // TODO: move adventurer card to played pile?
-    
+    // move played adventurer card to played pile
+    assert(expc->hand[player][handPos] == adventurer);
+    for (i = handPos; i < expc->handCount[player]-1; i++) {
+        expc->hand[player][i] = expc->hand[player][i+1];
+    }
+    expc->handCount[player]--;
+    expc->playedCards[expc->playedCardCount++] = adventurer;
 }
 
 
@@ -173,7 +182,7 @@ int main(int argc, char const *argv[]) {
 
         // generate expected output
         SelectStream(shuffleStream);
-        testOrcale(&original, &expected, shuffleSeed);
+        testOrcale(handPos, &original, &expected, shuffleSeed);
 
         // generate result output
         PutSeed(shuffleSeed);
