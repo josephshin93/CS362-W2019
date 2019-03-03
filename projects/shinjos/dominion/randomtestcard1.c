@@ -29,21 +29,21 @@ void randomInput(struct cardPlayInput *input) {
         input->c1 = 1;
         input->c2 = 0;
     }
-    input->c3 = 0;
+    input->c3 = randValInRange(0, 2);
 
     // random game state
     struct gameState *state = &input->state;
     randomizeGameState(state);
 
     // keep player number 2-4
-    state->numPlayers = randomRangeVal(2, 3);
-    state->whoseTurn = randomRangeVal(0, state->numPlayers);
+    state->numPlayers = randValInRange(2, 3);
+    state->whoseTurn = randValInRange(0, state->numPlayers);
 
     // for all, keep hand counts 3-7 (60% of hand count >= 5)
     for (i = 0; i < state->numPlayers; i++) {
-        state->handCount[i] = randomRangeVal(3, 5); // 60% chance of hand count >= 5
-        state->deckCount[i] = randomRangeVal(4, 10); // keep deck >= 4 to avoid shuffling
-        state->discardCount[i] = randomRangeVal(4, 10);
+        state->handCount[i] = randValInRange(3, 5); // 60% chance of hand count >= 5
+        state->deckCount[i] = randValInRange(4, 10); // keep deck >= 4 to avoid shuffling
+        state->discardCount[i] = randValInRange(4, 10);
     }
 
     // hand position
