@@ -49,8 +49,13 @@ void randomInput(struct cardPlayInput *input) {
     // hand position
     input->handPos = randValInRange(0, state->handCount[state->whoseTurn]);
 
-    // ~90% that card will be played
-    state->hand[state->whoseTurn][input->handPos] = minion;
+    // ~86% that card will be played
+    // NOTE: in the event that the card in handPos is not an minion, it 
+    //       must either be < 7 or > 26 or else another action card is 
+    //       played with the this input, which could lead to infinite loops
+    //       or the program crashing
+    if (chanced(95)) state->hand[state->whoseTurn][input->handPos] = minion;
+    else state->hand[state->whoseTurn][input->handPos] = 0; 
     if (chanced(95)) state->phase = 0;
     if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }

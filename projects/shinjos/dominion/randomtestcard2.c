@@ -37,9 +37,14 @@ void randomInput(struct cardPlayInput *input) {
 
     // place smithy card in random spot of hand
     input->handPos = randValInRange(0, state->handCount[state->whoseTurn]);
-    state->hand[state->whoseTurn][input->handPos] = smithy;
 
-    // ~90% that card will be played
+    // ~86% that card will be played
+    // NOTE: in the event that the card in handPos is not an smithy, it 
+    //       must either be < 7 or > 26 or else another action card is 
+    //       played with the this input, which could lead to infinite loops
+    //       or the program crashing
+    if (chanced(95)) state->hand[state->whoseTurn][input->handPos] = smithy;
+    else state->hand[state->whoseTurn][input->handPos] = 0; 
     if (chanced(95)) state->phase = 0;
     if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }
@@ -151,16 +156,10 @@ int main(int argc, char const *argv[]) {
         // generate random inputs
         SelectStream(inputStream);
         randomInput(&input);
-        // printf("\n\nRANDOMIZED INPUT STATE\n");
-        // printf("Number of players: %d\n", input.state.numPlayers);
-        // printPlayerState(input.state.whoseTurn, &input.state);
 
         // generate expected output
         SelectStream(shuffleStream);
         testOrcale(&input, &expected, shuffleSeed);
-        // printf("\nEXPECTED STATE FROM ORACLE\n");
-        // printf("Number of players: %d\n", expected.numPlayers);
-        // printPlayerState(expected.whoseTurn, &expected);
 
         // generate result output
         PutSeed(shuffleSeed);

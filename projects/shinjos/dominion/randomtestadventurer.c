@@ -33,9 +33,14 @@ void randomInput(int *handPos, int *c1, int *c2, int *c3, struct gameState *stat
 
     // place adventurer card in hand
     *handPos = randValInRange(0, state->handCount[state->whoseTurn]);    
-    state->hand[state->whoseTurn][*handPos] = adventurer;
 
-    // ~90% chance that card will be chosen
+    // ~86% chance that card will be played
+    // NOTE: in the event that the card in handPos is not an adventurer, it 
+    //       must either be < 7 or > 26 or else another action card is 
+    //       played with the this input, which could lead to infinite loops
+    //       or the program crashing
+    if (chanced(95)) state->hand[state->whoseTurn][*handPos] = adventurer;
+    else state->hand[state->whoseTurn][*handPos] = 0; 
     if (chanced(95)) state->phase = 0;
     if (chanced(95) && state->numActions < 0) state->numActions *= -1;
 }
@@ -159,8 +164,7 @@ void testOrcale(int handPos, struct gameState *orig, struct gameState *expc, lon
 
 
 int main(int argc, char const *argv[]) {
-    // NOTE: 4208th test case causes testing to "pause" - suspecting an infinite loop
-    const int NUM_TEST_CASES = 4207, SHOW_FAIL_DETAILS = 0;
+    const int NUM_TEST_CASES = 5000, SHOW_FAIL_DETAILS = 0;
     int i, passed = 0;
     int handPos, c1, c2, c3;
     struct gameState original, expected;
@@ -179,7 +183,7 @@ int main(int argc, char const *argv[]) {
         // generate random inputs
         SelectStream(inputStream);
         randomInput(&handPos, &c1, &c2, &c3, &original);
-
+        
         // generate expected output
         SelectStream(shuffleStream);
         testOrcale(handPos, &original, &expected, shuffleSeed);
