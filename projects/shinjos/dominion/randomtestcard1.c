@@ -59,14 +59,17 @@ void randomInput(struct cardPlayInput *input) {
 // compute expected state from original state
 void testOrcale(struct cardPlayInput *input, struct gameState *expc) {
     struct gameState *orig = &input->state;
-    memcpy(expc, orig, sizeof(struct gameState));
 
-    // check if card can be played can be done
-    if (expc->phase != ACTION_PHASE || expc->numActions < 1) return;
+    memcpy(expc, orig, sizeof(struct gameState));
 
     const int C1_BONUS = 2;
     int i, j, card, totalCoins = 0;
     int player = expc->whoseTurn;
+
+    // check if card can be played can be done
+    if (expc->phase != ACTION_PHASE || 
+        expc->numActions < 1 || 
+        expc->hand[player][input->handPos] != minion) return;
     
     // check for second choice
     if (input->c2) {
@@ -98,11 +101,20 @@ void testOrcale(struct cardPlayInput *input, struct gameState *expc) {
     expc->coins = totalCoins;
 
     // check for first choice
-    if (input->c1) expc->coins += C1_BONUS;
+    if (input->c1) {
+        expc->coins += C1_BONUS;
+        
+        // move minion card to played pile
+        assert(expc->hand[player][input->handPos] == minion);
+        for (i = input->handPos; i < expc->handCount[player]-1; i++) {
+            expc->hand[player][i] = expc->hand[player][i+1];
+        }
+        expc->handCount[player]--;
+        expc->playedCards[expc->playedCardCount++] = minion;
+    }
 
     // actions - 1 + 1; so don't change
 
-    // TODO: move minion card to played pile?
 }
 
 
