@@ -34,9 +34,7 @@ projects/shinjos/dominion/randtestall
 projects/shinjos/dominion/testing_snapshots
 
 # final project
-FinalProject/**/.gitignore
-FinalProject/**/.classpath
-FinalProject/**/.project
-FinalProject/**/.metadata
-projects/shinjos/FinalProject/**/.metadata
-projects/shinjos/FinalProject/**/.metadata
+**/FinalProject/**/.gitignore
+**/FinalProject/**/.classpath
+**/FinalProject/**/.project
+**/FinalProject/**/.metadata
