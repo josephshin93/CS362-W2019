@@ -8,6 +8,7 @@ projects/shinjos/dominion/*.gcno
 projects/shinjos/dominion/*.c.gcov
 projects/shinjos/dominion/*.o
 projects/shinjos/dominion/*.dSYM
+projects/shinjos/dominion/*.out
 # executables
 projects/shinjos/dominion/playdom
 projects/shinjos/dominion/player
