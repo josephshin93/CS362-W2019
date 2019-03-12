@@ -23,6 +23,9 @@ public class UrlValidatorTest extends TestCase {
 	private String[] invalidAuthorities = {"256.256.256.256", "go.a", "aaa", ".1.2.3.4", ""};
 	private String[] invalidPaths = {"/..", "/../", "/..//file", "/path1//file"};
 	private String[] invalidQueries = {"?action[]", "action=123"};
+	
+	// print flag
+	private static boolean PRINT = true;
 
 	
 
@@ -110,6 +113,43 @@ public class UrlValidatorTest extends TestCase {
 
    }
    //You need to create more test cases for your Partitions if you need to 
+   
+   
+   
+   
+   
+   public void testHttpHostport() {
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   TestUrlPart scheme = new TestUrlPart("http://", true);
+	   TestUrlPart[] hostports = { new TestUrlPart("www.google.com", true),
+			   					   new TestUrlPart("128.119.245.12", true), // gaia.cs.umass.edu 
+			   					   new TestUrlPart("flip1.engr.oregonstate.edu:5002", true),
+			   					   new TestUrlPart("www.g>oogle.com", false),
+			   					   new TestUrlPart("128.119.245.    12", false),
+			   					   new TestUrlPart("flip1.engr.oregonstate.edu:##02", false)
+			                     };
+	   TestUrlPart path = new TestUrlPart("/index.html", true);
+	   TestUrlPart search = new TestUrlPart("", true);
+	   
+	   TestHttpUrl input;
+	   boolean result;
+	   
+	   for (int i = 0; i < hostports.length; i++) {
+		   input = new TestHttpUrl(scheme, hostports[i], path, search);
+		   result = urlVal.isValid(input.urlString());
+		   if (PRINT) {
+			   System.out.println("Url: \"" + input.urlString() + "\"" + 
+					              "  expected: " + input.validity() + 
+					              "  result: " + result);
+		   }
+		   assertEquals(input.validity(), result);
+	   }
+   }
+   
+   
+   
+   
    
    
    public void testIsValid() {
