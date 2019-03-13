@@ -33,7 +33,7 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
   
-   
+   // private method to run one test with a manual constructed url as input
    private boolean singleManualTest(UrlValidator validator, String url, boolean valid) {
 	   if (validator.isValid(url) == valid) {
 		   if (PRINT) {
@@ -48,6 +48,7 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   // collection of all manual tests
    public void testManualTest() {
 	   UrlValidator validator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
@@ -62,6 +63,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
+
    public void testValidUrls() {
 	   //You can use this function to implement your First Partition testing
 	   
@@ -158,7 +160,7 @@ public class UrlValidatorTest extends TestCase {
 	   TestHttpUrl input;
 	   boolean result;
 	   
-	   System.out.println("- HTTP Path Unit Test -------------------------------------");
+	   System.out.println("- HTTP HostPort Unit Test ---------------------------------");
 	   
 	   // go through each host port and create a url to test
 	   for (int i = 0; i < hostports.length; i++) {
@@ -257,6 +259,44 @@ public class UrlValidatorTest extends TestCase {
 	   
 	   System.out.println("-----------------------------------------------------------\n");
    }
+   
+   // unit test to test various searches ("aka" queries)
+   public void testHttpSearch() {
+	   // object containing method under test
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // url parts for http url
+	   TestUrlPart scheme = new TestUrlPart("http://", true);
+	   TestUrlPart hostports = new TestUrlPart("www.google.com", true);
+	   TestUrlPart path = new TestUrlPart("/index.html", true);
+	   TestUrlPart[] search = {	new TestUrlPart("?crcat=test&crsource=test&crkw=buy-a-lot", true),
+			   					new TestUrlPart("?&crsource=google", true),
+			   					new TestUrlPart("?&&&&crsource=google", true),
+			   					new TestUrlPart("?pid=232?crsource=google", false)
+	   };
+	   TestHttpUrl input;
+	   boolean result;
+	   
+	   System.out.println("- HTTP Search Unit Test -----------------------------------");
+	   
+	   // go through each host port and create a url to test
+	   for (int i = 0; i < search.length; i++) {
+		   input = new TestHttpUrl(scheme, hostports, path,search[i]);
+		   result = urlVal.isValid(input.urlString());
+		   if (PRINT) {
+			   if (result == input.validity()) {
+				   System.out.print("TEST CASE " + (i+1) + ": PASSED  ");
+			   } else {
+				   System.out.print("TEST CASE " + (i+1) + ": FAILED  ");
+			   }
+			   System.out.println("Url: \"" + input.urlString() + "\"");
+		   }
+//		   assertEquals(input.validity(), result);
+	   }
+	   
+	   System.out.println("-----------------------------------------------------------\n");
+}
+   
    
    
    public void testIsValid() {
