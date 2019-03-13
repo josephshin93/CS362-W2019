@@ -41,15 +41,16 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
-   public void testYourFirstPartition() {
+   public void testValidUrls() {
 	   //You can use this function to implement your First Partition testing
 	   
-	   // Author: Chris Brown -------------------------------------------------
 	   UrlValidator validator = new UrlValidator();
 	   Random rng = new Random();
 	   int passed = 0;
 	   int failed = 0;
 
+	   System.out.println("- Valid URL Unit Test -------------------------------------");
+	   
 	   // Test Valid Partitions
 	   for (int i = 0; i < 100; i++) {
 	      int schemeIndex = rng.nextInt(validSchemes.length);
@@ -72,19 +73,20 @@ public class UrlValidatorTest extends TestCase {
 	   }
 
 	   System.out.println("===Valid Partitions===\nPassed: " + passed + "\nFailed: " + failed);
-	   // ---------------------------------------------------------------------
+	   
+	   System.out.println("-----------------------------------------------------------\n");
 	   
    }
    
    
-   public void testYourSecondPartition() {
-	   //You can use this function to implement your Second Partition testing
+   public void testInvalidUrls() {
 	   
-	   // Author: Chris Brown -------------------------------------------------
 	   UrlValidator validator = new UrlValidator();
 	   Random rng = new Random();
 	   int passed = 0;
 	   int failed = 0;
+	   
+	   System.out.println("- Invalid URL Unit Test -----------------------------------");
 
 	   // Test Valid Partitions
 	   for (int i = 0; i < 100; i++) {
@@ -109,12 +111,10 @@ public class UrlValidatorTest extends TestCase {
 
 	   System.out.println("===Invalid Partitions===\nFailed properly: " + passed + 
 	      "\nDid not fail: " + failed);
-	   // ---------------------------------------------------------------------
-
+	   
+	   
+	   System.out.println("-----------------------------------------------------------\n");
    }
-   //You need to create more test cases for your Partitions if you need to 
-   
-   
    
    
    // unit test to test various hostports "(hostname | hostnumber) [: port ]"
@@ -137,6 +137,8 @@ public class UrlValidatorTest extends TestCase {
 	   TestHttpUrl input;
 	   boolean result;
 	   
+	   System.out.println("- HTTP Path Unit Test -------------------------------------");
+	   
 	   // go through each host port and create a url to test
 	   for (int i = 0; i < hostports.length; i++) {
 		   input = new TestHttpUrl(scheme, hostports[i], path, search);
@@ -151,10 +153,49 @@ public class UrlValidatorTest extends TestCase {
 		   }
 //		   assertEquals(input.validity(), result);
 	   }
+	   
+	   System.out.println("-----------------------------------------------------------\n");
    }
    
    
-   
+   public void testHttpPath() {
+	   // object containing method under test
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // url parts for http url
+	   TestUrlPart scheme = new TestUrlPart("http://", true);
+	   TestUrlPart[] path = { new TestUrlPart("", true),
+                                   new TestUrlPart("/test", true), // gaia.cs.umass.edu 
+                                   new TestUrlPart("/.", true),
+                                   new TestUrlPart("/?", true),
+                                   new TestUrlPart("/..", false),
+                              
+			                     };
+	   TestUrlPart hostports = new TestUrlPart("www.google.com", true);
+	   TestUrlPart search = new TestUrlPart("", true);
+	   
+	   TestHttpUrl input;
+	   boolean result;
+	   
+	   System.out.println("- HTTP Path Unit Test -------------------------------------");
+	   
+	   // go through each host port and create a url to test
+	   for (int i = 0; i < path.length; i++) {
+		   input = new TestHttpUrl(scheme, hostports, path[i],search);
+		   result = urlVal.isValid(input.urlString());
+		   if (PRINT) {
+			   if (result == input.validity()) {
+				   System.out.print("TEST CASE " + (i+1) + ": PASSED  ");
+			   } else {
+				   System.out.print("TEST CASE " + (i+1) + ": FAILED  ");
+			   }
+			   System.out.println("Url: \"" + input.urlString() + "\"");
+		   }
+//		   assertEquals(input.validity(), result);
+	   }
+	   
+	   System.out.println("-----------------------------------------------------------\n");
+   }
    
    
    
@@ -162,6 +203,7 @@ public class UrlValidatorTest extends TestCase {
 	   //You can use this function for programming based testing
 
    }
+   
    
 
 
