@@ -34,10 +34,31 @@ public class UrlValidatorTest extends TestCase {
    }
   
    
+   private boolean singleManualTest(UrlValidator validator, String url, boolean valid) {
+	   if (validator.isValid(url) == valid) {
+		   if (PRINT) {
+			   System.out.println("Manual Test: PASSED  Url: \"" + url + "\"");
+		   }
+		   return true;
+	   } else {
+		   if (PRINT) {
+			   System.out.println("Manual Test: FAILED  Url: \"" + url + "\"");
+		   }
+		   return false;
+	   }
+   }
    
    public void testManualTest() {
-//You can use this function to implement your manual testing	   
+	   UrlValidator validator = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
 	   
+	   System.out.println("- Manual Tests --------------------------------------------");
+	   
+	   singleManualTest(validator, "http://www.google.com", true);
+	   singleManualTest(validator, "http://&*^(& *#Q $()&#", false);
+	   // TODO: add additional random tests
+	   
+	   
+	   System.out.println("-----------------------------------------------------------\n");
    }
    
    
@@ -157,7 +178,7 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("-----------------------------------------------------------\n");
    }
    
-   
+   // unit test to test various paths
    public void testHttpPath() {
 	   // object containing method under test
 	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
@@ -197,6 +218,45 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("-----------------------------------------------------------\n");
    }
    
+   //unit test to test the various schemes
+   public void testHttpHttp() {
+	   // object containing method under test
+	   UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+	   
+	   // url parts for http url
+	   TestUrlPart[] scheme = {	new TestUrlPart("http://", true), 
+			   					new TestUrlPart("http:/", false),
+			   					new TestUrlPart("http//", false),
+			   					new TestUrlPart("http:", false),
+//			   					new TestUrlPart("ftp://", true),
+//			   					new TestUrlPart("fake://", false)
+	   };
+	   TestUrlPart hostports = new TestUrlPart("www.google.com", true);
+	   TestUrlPart path = new TestUrlPart("/index.html", true);
+	   TestUrlPart search = new TestUrlPart("", true);
+	   
+	   TestHttpUrl input;
+	   boolean result;
+	   
+	   System.out.println("- Url Scheme Unit Test ------------------------------------");
+	   
+	   // go through each scheme and create a url to test
+	   for (int i = 0; i < scheme.length; i++) {
+		   input = new TestHttpUrl(scheme[i], hostports, path, search);
+		   result = urlVal.isValid(input.urlString());
+		   if (PRINT) {
+			   if (result == input.validity()) {
+				   System.out.print("TEST CASE " + (i+1) + ": PASSED  ");
+			   } else {
+				   System.out.print("TEST CASE " + (i+1) + ": FAILED  ");
+			   }
+			   System.out.println("Url: \"" + input.urlString() + "\"");
+		   }
+//		   assertEquals(input.validity(), result);
+	   }
+	   
+	   System.out.println("-----------------------------------------------------------\n");
+   }
    
    
    public void testIsValid() {
