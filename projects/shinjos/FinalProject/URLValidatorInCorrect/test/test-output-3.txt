@@ -1,0 +1,357 @@
+- Manual Tests --------------------------------------------
+Manual Test: PASSED  Url: "http://www.google.com"
+Manual Test: FAILED  Url: "http://&*^(& *#Q $()&#"
+Manual Test: PASSED  Url: "http://"
+Manual Test: PASSED  Url: "http://google.com"
+Manual Test: PASSED  Url: "http://google.com/test1"
+Manual Test: PASSED  Url: "http://www.google.com/test1"
+Manual Test: PASSED  Url: "http://google.com/test1?action=view"
+Manual Test: PASSED  Url: "http://www.google.com/test1?action=view"
+Manual Test: PASSED  Url: "google"
+Manual Test: PASSED  Url: "google.com"
+Manual Test: PASSED  Url: "google,com:80"
+Manual Test: PASSED  Url: "www.google.com:80"
+Manual Test: PASSED  Url: "http://www.google.com:80/test1?action=view"
+Manual Test: PASSED  Url: "http://www.google.com:80/test1
+"
+Manual Test: PASSED  Url: "http://www.google.com:80/test1?action=view"
+Manual Test: PASSED  Url: "http:google.com"
+Manual Test: PASSED  Url: "http://www.google.com:80/test1?action=??view"
+Manual Test: PASSED  Url: "http:/www.google.com:80/-1..%%test1?action=view"
+-----------------------------------------------------------
+
+- Random Invalid URL Test --------------------------------
+FAILED as expected: htpaaa/..action=123
+FAILED as expected: htp.1.2.3.4/../action=123
+FAILED as expected: ://go.a/..action=123
+FAILED as expected: htpgo.a/..action=123
+FAILED as expected: https:/256.256.256.256/..//fileaction=123
+FAILED as expected: https:/go.a/..action=123
+FAILED as expected: https:/.1.2.3.4/..//file?action[]
+FAILED as expected: https://path1//file?action[]
+FAILED as expected: htp.1.2.3.4/..//fileaction=123
+FAILED as expected: ://.1.2.3.4/..action=123
+FAILED as expected: https://path1//fileaction=123
+FAILED as expected: http:256.256.256.256/..//file?action[]
+FAILED as expected: http:256.256.256.256/path1//fileaction=123
+FAILED as expected: ://.1.2.3.4/..action=123
+FAILED as expected: ://256.256.256.256/path1//fileaction=123
+FAILED as expected: http:.1.2.3.4/..action=123
+FAILED as expected: ://aaa/path1//file?action[]
+FAILED as expected: https:/go.a/../?action[]
+FAILED as expected: https://../action=123
+FAILED as expected: ://256.256.256.256/..//fileaction=123
+FAILED as expected: https:/aaa/..//fileaction=123
+FAILED as expected: ://go.a/../?action[]
+FAILED as expected: htp256.256.256.256/path1//fileaction=123
+FAILED as expected: http:.1.2.3.4/..//file?action[]
+FAILED as expected: htpgo.a/..//fileaction=123
+FAILED as expected: htp.1.2.3.4/../action=123
+FAILED as expected: htpaaa/../?action[]
+FAILED as expected: https:/256.256.256.256/path1//file?action[]
+FAILED as expected: https:/go.a/..action=123
+FAILED as expected: htp.1.2.3.4/../action=123
+FAILED as expected: http:256.256.256.256/..//fileaction=123
+FAILED as expected: htpgo.a/..//file?action[]
+FAILED as expected: https:/aaa/path1//fileaction=123
+FAILED as expected: ://256.256.256.256/..//fileaction=123
+FAILED as expected: htpgo.a/..//file?action[]
+FAILED as expected: http:go.a/..action=123
+FAILED as expected: ://aaa/path1//file?action[]
+FAILED as expected: http:256.256.256.256/../action=123
+FAILED as expected: https://../?action[]
+FAILED as expected: http:.1.2.3.4/../action=123
+FAILED as expected: https:/aaa/path1//fileaction=123
+FAILED as expected: ://256.256.256.256/../action=123
+FAILED as expected: https:/.1.2.3.4/../action=123
+FAILED as expected: :///path1//fileaction=123
+FAILED as expected: ://256.256.256.256/../?action[]
+FAILED as expected: http:go.a/..?action[]
+FAILED as expected: http:.1.2.3.4/..//fileaction=123
+FAILED as expected: http:.1.2.3.4/..?action[]
+FAILED as expected: http:/..action=123
+FAILED as expected: htp/path1//fileaction=123
+FAILED as expected: https:/.1.2.3.4/path1//fileaction=123
+FAILED as expected: http:256.256.256.256/..//file?action[]
+FAILED as expected: https:/go.a/..action=123
+FAILED as expected: htp.1.2.3.4/..//file?action[]
+FAILED as expected: http:aaa/path1//fileaction=123
+FAILED as expected: htp256.256.256.256/../?action[]
+FAILED as expected: https:/256.256.256.256/..action=123
+FAILED as expected: htp256.256.256.256/path1//fileaction=123
+FAILED as expected: https:/256.256.256.256/path1//file?action[]
+FAILED as expected: http:256.256.256.256/../action=123
+FAILED as expected: ://go.a/../?action[]
+FAILED as expected: :///path1//file?action[]
+FAILED as expected: https:/256.256.256.256/..//fileaction=123
+FAILED as expected: htp/..?action[]
+FAILED as expected: http:go.a/..//file?action[]
+FAILED as expected: https:/aaa/..//file?action[]
+FAILED as expected: htp/../?action[]
+FAILED as expected: https:/.1.2.3.4/..action=123
+FAILED as expected: https:/go.a/..?action[]
+FAILED as expected: htpgo.a/..//fileaction=123
+FAILED as expected: ://go.a/../?action[]
+FAILED as expected: :///../?action[]
+FAILED as expected: https:/aaa/..//file?action[]
+FAILED as expected: http:aaa/..//fileaction=123
+FAILED as expected: htp.1.2.3.4/../?action[]
+FAILED as expected: https://path1//file?action[]
+FAILED as expected: http:.1.2.3.4/path1//file?action[]
+FAILED as expected: https:/.1.2.3.4/path1//fileaction=123
+FAILED as expected: htpgo.a/..action=123
+FAILED as expected: ://go.a/..?action[]
+FAILED as expected: https:/.1.2.3.4/path1//file?action[]
+FAILED as expected: htpaaa/..?action[]
+FAILED as expected: https:/go.a/path1//file?action[]
+FAILED as expected: htpgo.a/../action=123
+FAILED as expected: http:go.a/path1//fileaction=123
+FAILED as expected: https:/aaa/..?action[]
+FAILED as expected: https://..action=123
+FAILED as expected: http:/path1//fileaction=123
+FAILED as expected: htpaaa/..?action[]
+FAILED as expected: ://aaa/../action=123
+FAILED as expected: http:/../action=123
+FAILED as expected: htp.1.2.3.4/../action=123
+FAILED as expected: http:/..action=123
+FAILED as expected: htpaaa/../action=123
+FAILED as expected: https:/go.a/../action=123
+FAILED as expected: http:go.a/..//fileaction=123
+FAILED as expected: :///..action=123
+FAILED as expected: https:/256.256.256.256/..//fileaction=123
+FAILED as expected: https:/go.a/path1//fileaction=123
+FAILED as expected: htpaaa/../action=123
+===Invalid Partitions===
+Failed properly: 100
+Did not fail: 0
+-----------------------------------------------------------
+
+- Random Valid URL Test ----------------------------------
+FAILED!!! ftp://255.255.255.255/path2/?action=edit&mode=up
+FAILED!!! http://google.au/$path4?action=view
+FAILED!!! https://google.com/path3/file
+FAILED!!! https://google.com/path2/?action=view
+FAILED!!! https://google.au/path1?action=edit&mode=up
+FAILED!!! http://255.255.255.255/path3/file?action=view
+FAILED!!! ftp://255.255.255.255?action=view
+FAILED!!! https://www.google.com/path1
+FAILED!!! ftp://255.255.255.255/path1?action=view
+FAILED!!! http://google.au/path1?action=view
+FAILED!!! ftp://google.au/$path4
+FAILED!!! ftp://google.au?action=edit&mode=up
+FAILED!!! ftp://www.google.com/path3/file?action=edit&mode=up
+FAILED!!! http://google.com/path2/?action=view
+FAILED!!! http://www.google.com/$path4?action=view
+FAILED!!! https://google.com/path3/file?action=view
+FAILED!!! https://255.255.255.255/path2/?action=edit&mode=up
+FAILED!!! https://255.255.255.255/path1?action=view
+FAILED!!! http://google.com
+FAILED!!! https://www.google.com/path3/file
+FAILED!!! ftp://255.255.255.255/path2/
+FAILED!!! http://google.au/path1
+FAILED!!! http://google.au/path3/file?action=edit&mode=up
+FAILED!!! ftp://www.google.com/path3/file?action=view
+FAILED!!! https://www.google.com?action=edit&mode=up
+FAILED!!! https://255.255.255.255/path1
+FAILED!!! ftp://google.com/path2/?action=edit&mode=up
+FAILED!!! https://google.au
+FAILED!!! ftp://255.255.255.255?action=view
+FAILED!!! http://google.com/path1?action=edit&mode=up
+FAILED!!! http://google.com/$path4?action=view
+FAILED!!! http://255.255.255.255/path2/?action=edit&mode=up
+FAILED!!! http://google.com/path3/file
+FAILED!!! http://google.com/path2/?action=edit&mode=up
+FAILED!!! https://google.com/path2/
+FAILED!!! https://www.google.com/path1
+FAILED!!! https://google.com/$path4?action=edit&mode=up
+FAILED!!! http://www.google.com?action=view
+FAILED!!! http://www.google.com?action=edit&mode=up
+FAILED!!! https://google.au/path3/file?action=view
+FAILED!!! http://255.255.255.255/path3/file?action=edit&mode=up
+FAILED!!! http://www.google.com/$path4?action=view
+FAILED!!! https://google.com/path2/
+FAILED!!! ftp://255.255.255.255/path2/?action=edit&mode=up
+FAILED!!! https://255.255.255.255/path3/file?action=view
+FAILED!!! ftp://google.com/$path4?action=edit&mode=up
+FAILED!!! http://www.google.com/path3/file
+FAILED!!! http://www.google.com/path2/?action=view
+FAILED!!! http://www.google.com/path1
+FAILED!!! ftp://255.255.255.255/path1?action=view
+FAILED!!! ftp://www.google.com/path3/file?action=edit&mode=up
+FAILED!!! https://google.com/$path4?action=edit&mode=up
+FAILED!!! ftp://255.255.255.255?action=edit&mode=up
+FAILED!!! https://255.255.255.255/path2/
+FAILED!!! http://www.google.com/path2/?action=edit&mode=up
+FAILED!!! ftp://www.google.com/path3/file?action=edit&mode=up
+FAILED!!! http://255.255.255.255?action=view
+FAILED!!! ftp://google.au/path2/
+FAILED!!! https://255.255.255.255?action=view
+FAILED!!! http://255.255.255.255/path1
+FAILED!!! ftp://www.google.com/path2/?action=view
+FAILED!!! http://255.255.255.255?action=view
+FAILED!!! ftp://google.au/$path4
+FAILED!!! http://google.au/$path4
+FAILED!!! https://www.google.com/path3/file?action=edit&mode=up
+FAILED!!! https://www.google.com?action=edit&mode=up
+FAILED!!! https://www.google.com/path2/
+FAILED!!! ftp://google.com
+FAILED!!! ftp://255.255.255.255?action=view
+FAILED!!! http://google.com?action=edit&mode=up
+FAILED!!! https://google.com/path3/file?action=view
+FAILED!!! https://255.255.255.255/path1
+FAILED!!! ftp://google.com
+FAILED!!! http://www.google.com/path3/file
+FAILED!!! ftp://google.com?action=view
+FAILED!!! https://google.com/path2/?action=edit&mode=up
+FAILED!!! ftp://www.google.com/$path4
+FAILED!!! https://www.google.com
+FAILED!!! http://www.google.com
+FAILED!!! https://google.com
+FAILED!!! ftp://google.com/path1
+FAILED!!! https://www.google.com
+FAILED!!! ftp://google.au?action=view
+FAILED!!! https://www.google.com/path3/file?action=view
+FAILED!!! ftp://google.com
+FAILED!!! http://255.255.255.255/$path4?action=edit&mode=up
+FAILED!!! ftp://255.255.255.255/path1?action=edit&mode=up
+FAILED!!! https://www.google.com/path3/file
+FAILED!!! http://google.com?action=edit&mode=up
+FAILED!!! https://google.au/path1?action=edit&mode=up
+FAILED!!! ftp://google.com?action=edit&mode=up
+FAILED!!! ftp://google.com?action=edit&mode=up
+FAILED!!! http://google.au?action=view
+FAILED!!! https://google.au/$path4?action=view
+FAILED!!! ftp://google.au/$path4?action=edit&mode=up
+FAILED!!! https://google.au?action=view
+FAILED!!! ftp://google.com?action=view
+FAILED!!! ftp://www.google.com/path3/file?action=view
+FAILED!!! ftp://google.com/path1
+FAILED!!! https://255.255.255.255/path3/file
+===Valid Partitions===
+Passed: 0
+Failed: 100
+-----------------------------------------------------------
+
+- Random HTTP URL Test ------------------------------------
+TEST CASE 1: PASSED  Url: "htpgoogle.au/path1//file?action=edit&mode=up"
+TEST CASE 2: PASSED  Url: "https:/www.google.com/path3/fileaction=123"
+TEST CASE 3: PASSED  Url: "htp255.255.255.255/path3/file?action[]"
+TEST CASE 4: PASSED  Url: "http://go.a/../?action[]"
+TEST CASE 5: PASSED  Url: "https:/google.au/$path4?action=edit&mode=up"
+TEST CASE 6: PASSED  Url: "https:/"
+TEST CASE 7: PASSED  Url: "https:/aaa/path1//fileaction=123"
+TEST CASE 8: PASSED  Url: "http:///path3/file?action[]"
+TEST CASE 9: PASSED  Url: "https:/google.au/$path4?action=view"
+TEST CASE 10: PASSED  Url: "://255.255.255.255/path3/fileaction=123"
+TEST CASE 11: PASSED  Url: "http:255.255.255.255/.."
+TEST CASE 13: PASSED  Url: "https:/go.a/path2/action=123"
+TEST CASE 14: PASSED  Url: "http:256.256.256.256?action=edit&mode=up"
+TEST CASE 15: PASSED  Url: "http://google.au/path3/file?action[]"
+TEST CASE 16: PASSED  Url: "https:/google.au/path1//file"
+TEST CASE 17: PASSED  Url: "://go.a/path1action=123"
+TEST CASE 18: PASSED  Url: "://.1.2.3.4/path3/file"
+TEST CASE 19: PASSED  Url: "htp.1.2.3.4/../?action[]"
+TEST CASE 20: PASSED  Url: "http:255.255.255.255/path3/file"
+TEST CASE 22: PASSED  Url: "htp/..?action=edit&mode=up"
+> TEST CASE 23: FAILED  Url: "http://www.google.com/path2/?action=edit&mode=up"
+TEST CASE 24: PASSED  Url: "://google.com/../action=123"
+TEST CASE 26: PASSED  Url: "http://255.255.255.255?action=view"
+TEST CASE 27: PASSED  Url: "http://go.a/path2/"
+TEST CASE 28: PASSED  Url: "https:/256.256.256.256/path1//file?action=edit&mode=up"
+TEST CASE 29: PASSED  Url: "http:www.google.com/$path4"
+> TEST CASE 31: FAILED  Url: "http:///path1?action=edit&mode=up"
+TEST CASE 32: PASSED  Url: "https:/256.256.256.256/path1//file?action=view"
+TEST CASE 33: PASSED  Url: "http://255.255.255.255?action=view"
+TEST CASE 34: PASSED  Url: "htp.1.2.3.4?action=edit&mode=up"
+TEST CASE 35: PASSED  Url: "http:google.com/..//file?action=view"
+TEST CASE 37: PASSED  Url: "://www.google.com/path1//file?action=view"
+TEST CASE 39: PASSED  Url: "http://256.256.256.256/..?action[]"
+TEST CASE 40: PASSED  Url: "htp/path1//fileaction=123"
+TEST CASE 42: PASSED  Url: "http:google.com/..//file?action=view"
+TEST CASE 43: PASSED  Url: "htp.1.2.3.4/$path4action=123"
+TEST CASE 45: PASSED  Url: "https:/go.a/$path4?action=edit&mode=up"
+> TEST CASE 46: FAILED  Url: "http://255.255.255.255/$path4action=123"
+TEST CASE 47: PASSED  Url: ":///path2/action=123"
+TEST CASE 48: PASSED  Url: "http://google.com/../?action[]"
+TEST CASE 49: PASSED  Url: "http:go.a/../?action=view"
+TEST CASE 50: PASSED  Url: "http://255.255.255.255/..//file?action=view"
+TEST CASE 53: PASSED  Url: "https:/www.google.com/..//fileaction=123"
+TEST CASE 55: PASSED  Url: "http:255.255.255.255/path1//fileaction=123"
+TEST CASE 57: PASSED  Url: "://255.255.255.255/$path4"
+TEST CASE 58: PASSED  Url: "://www.google.com/../?action=edit&mode=up"
+TEST CASE 59: PASSED  Url: "htp255.255.255.255/$path4action=123"
+TEST CASE 60: PASSED  Url: "https:/.1.2.3.4/../?action=edit&mode=up"
+TEST CASE 61: PASSED  Url: "htpgoogle.au/..action=123"
+TEST CASE 63: PASSED  Url: "htpaaa/.."
+TEST CASE 64: PASSED  Url: "://www.google.com/../action=123"
+TEST CASE 65: PASSED  Url: "://255.255.255.255/../?action[]"
+TEST CASE 66: PASSED  Url: "htp/path1//file"
+TEST CASE 69: PASSED  Url: "http://256.256.256.256/..//file?action=edit&mode=up"
+> TEST CASE 70: FAILED  Url: "http://.1.2.3.4?action[]"
+TEST CASE 71: PASSED  Url: ":///path2/?action[]"
+TEST CASE 72: PASSED  Url: "https:/255.255.255.255/path2/"
+TEST CASE 73: PASSED  Url: ":///..action=123"
+TEST CASE 75: PASSED  Url: "http:256.256.256.256/..//file?action[]"
+TEST CASE 76: PASSED  Url: "http:google.au/path3/file?action=view"
+TEST CASE 77: PASSED  Url: "://google.com/path1//file?action=view"
+> TEST CASE 80: FAILED  Url: "http:///$path4action=123"
+TEST CASE 81: PASSED  Url: "htp/..?action=edit&mode=up"
+TEST CASE 82: PASSED  Url: "https:/255.255.255.255/..//file?action=view"
+> TEST CASE 84: FAILED  Url: "http://255.255.255.255/path2/"
+TEST CASE 85: PASSED  Url: "://google.com/path1//file?action[]"
+TEST CASE 86: PASSED  Url: "http:www.google.com/..//file?action=edit&mode=up"
+TEST CASE 88: PASSED  Url: "https:/.1.2.3.4/../?action=edit&mode=up"
+TEST CASE 92: PASSED  Url: "htpgo.a/path2/action=123"
+> TEST CASE 93: FAILED  Url: "http://go.a/$path4?action=view"
+TEST CASE 94: PASSED  Url: "htpaaa/path1?action[]"
+TEST CASE 95: PASSED  Url: "htpgo.a/..//fileaction=123"
+TEST CASE 96: PASSED  Url: "://google.au/path1//file?action[]"
+TEST CASE 97: PASSED  Url: "://256.256.256.256/..//file?action=view"
+TEST CASE 98: PASSED  Url: "http://256.256.256.256/path2/action=123"
+TEST CASE 99: PASSED  Url: "https:/go.a/..//fileaction=123"
+Total passed: 69
+Total failed: 31
+-----------------------------------------------------------
+
+- HTTP Search Unit Test -----------------------------------
+TEST CASE 1: PASSED  Url: "http://www.google.com/index.html?crcat=test&crsource=test&crkw=buy-a-lot"
+TEST CASE 2: PASSED  Url: "http://www.google.com/index.html?&crsource=google"
+TEST CASE 3: PASSED  Url: "http://www.google.com/index.html?&&&&crsource=google"
+> TEST CASE 4: FAILED  Url: "http://www.google.com/index.html?pid=232?crsource=google"
+Total passed: 3
+Total failed: 1
+-----------------------------------------------------------
+
+- Url Scheme Unit Test ------------------------------------
+TEST CASE 1: PASSED  Url: "http://www.google.com/index.html"
+TEST CASE 2: PASSED  Url: "http:/www.google.com/index.html"
+TEST CASE 3: PASSED  Url: "http//www.google.com/index.html"
+TEST CASE 4: PASSED  Url: "http:www.google.com/index.html"
+Total passed: 4
+Total failed: 0
+-----------------------------------------------------------
+
+- HTTP Path Unit Test -------------------------------------
+TEST CASE 1: PASSED  Url: "http://www.google.com"
+TEST CASE 2: PASSED  Url: "http://www.google.com/test"
+TEST CASE 3: PASSED  Url: "http://www.google.com/."
+TEST CASE 4: PASSED  Url: "http://www.google.com/?"
+TEST CASE 5: PASSED  Url: "http://www.google.com/.."
+> TEST CASE 6: FAILED  Url: "http://www.google.com/test/test2"
+> TEST CASE 7: FAILED  Url: "http://www.google.com/test/test2/test3"
+TEST CASE 8: PASSED  Url: "http://www.google.com//test"
+Total passed: 6
+Total failed: 2
+-----------------------------------------------------------
+
+- HTTP HostPort Unit Test ---------------------------------
+TEST CASE 1: PASSED  Url: "http://www.google.com/index.html"
+TEST CASE 2: PASSED  Url: "http://128.119.245.12/index.html"
+> TEST CASE 3: FAILED  Url: "http://flip1.engr.oregonstate.edu:5002/index.html"
+> TEST CASE 4: FAILED  Url: "http://www.g>oogle.com/index.html"
+> TEST CASE 5: FAILED  Url: "http://128.119.245.    12/index.html"
+TEST CASE 6: PASSED  Url: "http://flip1.engr.oregonstate.edu:##02/index.html"
+Total passed: 3
+Total failed: 3
+-----------------------------------------------------------
+
