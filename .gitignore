@@ -8,6 +8,8 @@ projects/shinjos/dominion/*.gcno
 projects/shinjos/dominion/*.c.gcov
 projects/shinjos/dominion/*.o
 projects/shinjos/dominion/*.dSYM
+# output files
+projects/shinjos/dominion/*.out
 # executables
 projects/shinjos/dominion/playdom
 projects/shinjos/dominion/player
@@ -35,8 +37,12 @@ projects/shinjos/dominion/testing_snapshots
 
 # final project
 FinalProject/**/.gitignore
-FinalProject/**/.classpath
-FinalProject/**/.project
+FinalProject/**/*.classpath
+FinalProject/**/*.project
 FinalProject/**/.metadata
+projects/shinjos/FinalProject/**/.gitignore
+projects/shinjos/FinalProject/**/*.classpath
+projects/shinjos/FinalProject/**/*.project
 projects/shinjos/FinalProject/**/.metadata
-projects/shinjos/FinalProject/**/.metadata
+
+projects/shinjos/FinalProject/UrlValidatorInCorrect/test/Trial.java
