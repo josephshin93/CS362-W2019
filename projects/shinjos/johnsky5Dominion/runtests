@@ -1,0 +1,113 @@
+#!/bin/bash
+
+test_out_dir="./testing_output"
+if [ -d "$test_out_dir" ]; then
+    echo "clearing $test_out_dir"
+    rm -R "$test_out_dir"
+else
+    echo "making $test_out_dir"
+    mkdir "$test_out_dir"
+fi
+echo
+echo
+
+make clean
+
+t_out_ext="results.out"
+gcov_out_ext="cov.txt"
+
+
+
+# function unit testing -------------------------------------------------------
+unit_tests="unittest1 unittest2 unittest3 unittest4"
+
+for ut in $unit_tests; do
+    rm dominion.o *.gcov *.gcda *.gcno
+    ut_out="$test_out_dir/$ut$t_out_ext"
+    make "$ut"
+
+    echo "running $ut"
+    timeinfo="$(time ( ./$ut >> $ut_out ) 2>&1 1>/dev/null )"
+    echo >> "$ut_out"
+    echo >> "$ut_out"
+
+    echo -n "$ut runtime:" >> "$ut_out"
+    echo "$timeinfo" >> "$ut_out"
+    echo >> "$ut_out"
+    echo >> "$ut_out"
+
+    echo -n "$ut coverage info:" >> "$ut_out"
+    gcov -b -f dominion.c >> "$ut_out"
+    echo >> "$ut_out"
+    echo >> "$ut_out"
+
+    gcov_out="$test_out_dir/$ut$gcov_out_ext"
+    cp dominion.c.gcov "$gcov_out"
+
+    echo
+done
+# -----------------------------------------------------------------------------
+
+
+
+# card unit testing -----------------------------------------------------------
+card_tests="cardtest1 cardtest2 cardtest3 cardtest4"
+
+for ct in $card_tests; do
+    rm dominion.o *.gcov *.gcda *.gcno
+    ct_out="$test_out_dir/$ct$t_out_ext"
+    make "$ct"
+
+    echo "running $ct"
+    timeinfo="$(time ( ./$ct >> $ct_out ) 2>&1 1>/dev/null )"
+    echo >> "$ct_out"
+    echo >> "$ct_out"
+
+    echo -n "$ct runtime:" >> "$ct_out"
+    echo "$timeinfo" >> "$ct_out"
+    echo >> "$ct_out"
+    echo >> "$ct_out"
+
+    echo -n "$ct coverage info:" >> "$ct_out"
+    gcov -b -f dominion.c >> "$ct_out"
+    echo >> "$ct_out"
+    echo >> "$ct_out"
+
+    gcov_out="$test_out_dir/$ct$gcov_out_ext"
+    cp dominion.c.gcov "$gcov_out"
+
+    echo
+done
+# -----------------------------------------------------------------------------
+
+
+
+# card random testing ---------------------------------------------------------
+card_tests="randomtestadventurer randomtestcard1 randomtestcard2"
+
+for rt in $card_tests; do
+    rm dominion.o *.gcov *.gcda *.gcno
+    rt_out="$test_out_dir/$rt$t_out_ext"
+    make "$rt"
+
+    echo "running $rt"
+    timeinfo="$(time ( ./$rt >> $rt_out ) 2>&1 1>/dev/null )"
+    echo >> "$rt_out"
+    echo >> "$rt_out"
+
+    echo -n "$rt runtime:" >> "$rt_out"
+    echo "$timeinfo" >> "$rt_out"
+    echo >> "$rt_out"
+    echo >> "$rt_out"
+
+    echo -n "$rt coverage info:" >> "$rt_out"
+    gcov -b -f dominion.c >> "$rt_out"
+    echo >> "$rt_out"
+    echo >> "$rt_out"
+
+    gcov_out="$test_out_dir/$rt$gcov_out_ext"
+    cp dominion.c.gcov "$gcov_out"
+
+    echo
+done
+# -----------------------------------------------------------------------------
