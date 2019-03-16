@@ -1,0 +1,454 @@
+================================= CARD TEST 1 ==================================
+target card:     Adventurer
+target function: int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)
+---------------------------------- Scenario A ----------------------------------
+Return Value: CORRECT
+Game State Comparison:
+numPlayers:      CORRECT expected(2) = resulting(2)
+supplyCount:     CORRECT 
+                 [0] -> expected(0) = resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+embargoTokens:   CORRECT 
+                 [0] -> expected(0) = resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+outpostPlayed:   CORRECT expected(0) = resulting(0)
+outpostTurn:     CORRECT expected(0) = resulting(0)
+whoseTurn:       CORRECT expected(0) = resulting(0)
+phase:           CORRECT expected(0) = resulting(0)
+numActions:      CORRECT expected(0) = resulting(0)
+coins:           WRONG   expected(8) < resulting(9)
+numBuys:         CORRECT expected(1) = resulting(1)
+hand:            WRONG   
+                 [0][0] -> expected(7) = resulting(7)
+                 [0][1] -> expected(4) = resulting(4)
+                 [0][2] -> expected(1) = resulting(1)
+                 [0][3] -> expected(4) = resulting(4)
+                 [0][4] -> expected(5) = resulting(5)
+                 [0][5] -> expected(4) = resulting(4)
+                 [0][6] -> expected(6) = resulting(6)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+handCount:       WRONG   
+                 [0] -> expected(7) < resulting(8)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+deck:            WRONG   
+                 [0][0] -> expected(4) = resulting(4)
+                 [0][1] -> expected(-1) < resulting(6)
+                 [0][2] -> expected(-1) < resulting(1)
+                 [0][3] -> expected(-1) < resulting(13)
+                 [0][4] -> expected(-1) < resulting(4)
+                 [0][5] -> expected(-1) < resulting(1)
+                 [0][6] -> expected(0) = resulting(0)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+deckCount:       WRONG   
+                 [0] -> expected(1) > resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+discard:         CORRECT 
+                 [0][0] -> expected(4) = resulting(4)
+                 [0][1] -> expected(1) = resulting(1)
+                 [0][2] -> expected(13) = resulting(13)
+                 [0][3] -> expected(1) = resulting(1)
+                 [0][4] -> expected(0) = resulting(0)
+                 [0][5] -> expected(0) = resulting(0)
+                 [0][6] -> expected(0) = resulting(0)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+discardCount:    CORRECT 
+                 [0] -> expected(4) = resulting(4)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+playedCards:     WRONG   
+                 [0] -> expected(7) > resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+playedCardCount: WRONG   expected(1) > resulting(0)
+--------------------------------------------------------------------------------
+---------------------------------- Scenario B ----------------------------------
+Return Value: CORRECT
+Game State Comparison:
+numPlayers:      CORRECT expected(2) = resulting(2)
+supplyCount:     CORRECT 
+                 [0] -> expected(0) = resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+embargoTokens:   CORRECT 
+                 [0] -> expected(0) = resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+outpostPlayed:   CORRECT expected(0) = resulting(0)
+outpostTurn:     CORRECT expected(0) = resulting(0)
+whoseTurn:       CORRECT expected(0) = resulting(0)
+phase:           CORRECT expected(0) = resulting(0)
+numActions:      CORRECT expected(0) = resulting(0)
+coins:           WRONG   expected(8) < resulting(11)
+numBuys:         CORRECT expected(1) = resulting(1)
+hand:            WRONG   
+                 [0][0] -> expected(7) = resulting(7)
+                 [0][1] -> expected(4) = resulting(4)
+                 [0][2] -> expected(1) = resulting(1)
+                 [0][3] -> expected(4) = resulting(4)
+                 [0][4] -> expected(5) = resulting(5)
+                 [0][5] -> expected(4) = resulting(4)
+                 [0][6] -> expected(6) = resulting(6)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+handCount:       WRONG   
+                 [0] -> expected(7) < resulting(8)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+deck:            WRONG   
+                 [0][0] -> expected(6) = resulting(6)
+                 [0][1] -> expected(-1) < resulting(6)
+                 [0][2] -> expected(-1) < resulting(1)
+                 [0][3] -> expected(-1) < resulting(13)
+                 [0][4] -> expected(-1) < resulting(4)
+                 [0][5] -> expected(-1) < resulting(1)
+                 [0][6] -> expected(0) = resulting(0)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+deckCount:       WRONG   
+                 [0] -> expected(1) > resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+discard:         WRONG   
+                 [0][0] -> expected(-1) < resulting(2)
+                 [0][1] -> expected(-1) < resulting(0)
+                 [0][2] -> expected(0) < resulting(1)
+                 [0][3] -> expected(0) < resulting(13)
+                 [0][4] -> expected(0) < resulting(1)
+                 [0][5] -> expected(0) = resulting(0)
+                 [0][6] -> expected(0) = resulting(0)
+                 [1][0] -> expected(0) = resulting(0)
+                 [1][1] -> expected(0) = resulting(0)
+                 [1][2] -> expected(0) = resulting(0)
+                 [1][3] -> expected(0) = resulting(0)
+                 [1][4] -> expected(0) = resulting(0)
+                 [1][5] -> expected(0) = resulting(0)
+                 [1][6] -> expected(0) = resulting(0)
+                 [2][0] -> expected(0) = resulting(0)
+                 [2][1] -> expected(0) = resulting(0)
+                 [2][2] -> expected(0) = resulting(0)
+                 [2][3] -> expected(0) = resulting(0)
+                 [2][4] -> expected(0) = resulting(0)
+                 [2][5] -> expected(0) = resulting(0)
+                 [2][6] -> expected(0) = resulting(0)
+                 [3][0] -> expected(0) = resulting(0)
+                 [3][1] -> expected(0) = resulting(0)
+                 [3][2] -> expected(0) = resulting(0)
+                 [3][3] -> expected(0) = resulting(0)
+                 [3][4] -> expected(0) = resulting(0)
+                 [3][5] -> expected(0) = resulting(0)
+                 [3][6] -> expected(0) = resulting(0)
+discardCount:    WRONG   
+                 [0] -> expected(0) < resulting(5)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+playedCards:     WRONG   
+                 [0] -> expected(7) > resulting(0)
+                 [1] -> expected(0) = resulting(0)
+                 [2] -> expected(0) = resulting(0)
+                 [3] -> expected(0) = resulting(0)
+                 [4] -> expected(0) = resulting(0)
+                 [5] -> expected(0) = resulting(0)
+                 [6] -> expected(0) = resulting(0)
+playedCardCount: WRONG   expected(1) > resulting(0)
+--------------------------------------------------------------------------------
+================================================================================
+
+
+cardtest1 runtime:
+real	0m0.007s
+user	0m0.002s
+sys	0m0.003s
+
+
+cardtest1 coverage info:Function 'compare'
+Lines executed:66.67% of 6
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+No calls
+
+Function 'newGame'
+Lines executed:0.00% of 2
+No branches
+No calls
+
+Function 'kingdomCards'
+Lines executed:0.00% of 12
+No branches
+No calls
+
+Function 'initializeGame'
+Lines executed:0.00% of 78
+Branches executed:0.00% of 46
+Taken at least once:0.00% of 46
+No calls
+
+Function 'shuffle'
+Lines executed:100.00% of 18
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No calls
+
+Function 'playCard'
+Lines executed:71.43% of 14
+Branches executed:100.00% of 10
+Taken at least once:50.00% of 10
+No calls
+
+Function 'buyCard'
+Lines executed:0.00% of 13
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+
+Function 'numHandCards'
+Lines executed:0.00% of 1
+No branches
+No calls
+
+Function 'handCard'
+Lines executed:100.00% of 2
+No branches
+No calls
+
+Function 'supplyCount'
+Lines executed:0.00% of 1
+No branches
+No calls
+
+Function 'fullDeckCount'
+Lines executed:0.00% of 11
+Branches executed:0.00% of 12
+Taken at least once:0.00% of 12
+No calls
+
+Function 'whoseTurn'
+Lines executed:100.00% of 1
+No branches
+No calls
+
+Function 'endTurn'
+Lines executed:0.00% of 22
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+
+Function 'isGameOver'
+Lines executed:0.00% of 12
+Branches executed:0.00% of 8
+Taken at least once:0.00% of 8
+No calls
+
+Function 'scoreFor'
+Lines executed:0.00% of 26
+Branches executed:0.00% of 42
+Taken at least once:0.00% of 42
+No calls
+
+Function 'getWinners'
+Lines executed:0.00% of 33
+Branches executed:0.00% of 22
+Taken at least once:0.00% of 22
+No calls
+
+Function 'drawCard'
+Lines executed:95.83% of 24
+Branches executed:100.00% of 6
+Taken at least once:83.33% of 6
+No calls
+
+Function 'getCost'
+Lines executed:0.00% of 30
+Branches executed:0.00% of 28
+Taken at least once:0.00% of 28
+No calls
+
+Function 'smithyEffect'
+Lines executed:0.00% of 5
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+No calls
+
+Function 'adventurerEffect'
+Lines executed:100.00% of 16
+Branches executed:100.00% of 12
+Taken at least once:91.67% of 12
+No calls
+
+Function 'councilRoomEffect'
+Lines executed:0.00% of 12
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+
+Function 'villageEffect'
+Lines executed:0.00% of 6
+Branches executed:0.00% of 2
+Taken at least once:0.00% of 2
+No calls
+
+Function 'greatHallEffect'
+Lines executed:0.00% of 4
+No branches
+No calls
+
+Function 'cardEffect'
+Lines executed:3.86% of 259
+Branches executed:12.85% of 179
+Taken at least once:1.12% of 179
+No calls
+
+Function 'discardCard'
+Lines executed:0.00% of 15
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+
+Function 'gainCard'
+Lines executed:0.00% of 15
+Branches executed:0.00% of 6
+Taken at least once:0.00% of 6
+No calls
+
+Function 'updateCoins'
+Lines executed:100.00% of 14
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No calls
+
+File 'dominion.c'
+Lines executed:15.03% of 652
+Branches executed:16.95% of 419
+Taken at least once:9.79% of 419
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
+
+
