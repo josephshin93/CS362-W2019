@@ -669,7 +669,7 @@ int smithyEffect( int currentPlayer, struct gameState *state, int handPos ) {
 
 int adventurerEffect( int currentPlayer, struct gameState *state, int drawntreasure, int cardDrawn, int temphand[], int z ) {
 
-   while ( drawntreasure < 3 ) {
+   while ( drawntreasure < 2 ) {
 		if ( state->deckCount[currentPlayer] < 1 ) {//if the deck is empty we need to shuffle discard and add to deck
 	  	shuffle(currentPlayer, state);
 		}
