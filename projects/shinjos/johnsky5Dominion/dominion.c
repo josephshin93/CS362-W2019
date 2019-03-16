@@ -655,7 +655,7 @@ int getCost(int cardNumber)
 int smithyEffect( int currentPlayer, struct gameState *state, int handPos ) {
 
    //+2 Cards (altered from +3 cards)
-   for (int i = 0; i < 2; i++)
+   for (int i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
