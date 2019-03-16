@@ -34,6 +34,10 @@ projects/shinjos/dominion/tryRandom.c
 # operations
 projects/shinjos/dominion/randtestall
 projects/shinjos/dominion/testing_snapshots
+# assignment 5 ignores
+projects/shinjos/dominion/runtests
+projects/shinjos/dominion/testing_output
+projects/shinjos/johnsky5Dominion/testing_output_1
 
 # final project
 FinalProject/**/.gitignore
