@@ -801,6 +801,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	//z=z-1;
    //   }
    //      return 0;
+   return 0;
 			
     case council_room:
 
@@ -827,6 +828,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
    //   discardCard(handPos, currentPlayer, state, 0);
 			
      // return 0;
+     return 0;
 			
     case feast:
       //gain card with cost up to 5
@@ -958,6 +960,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard card from hand
       //discardCard(handPos, currentPlayer, state, 0);
       //return 0;
+      return 0;
 		
     case village:
 		
@@ -972,6 +975,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       //discardCard(handPos, currentPlayer, state, 0);
       //return 0;
+      return 0;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
