@@ -3,15 +3,14 @@
 test_out_dir="./testing_output"
 if [ -d "$test_out_dir" ]; then
     echo "clearing $test_out_dir"
-    rm -R "$test_out_dir"
-else
-    echo "making $test_out_dir"
-    mkdir "$test_out_dir"
+    rm -R "$test_out_dir/"
 fi
+echo "making $test_out_dir"
+mkdir "$test_out_dir"
 echo
 echo
 
-make clean
+make clean 1>/dev/null
 
 t_out_ext="results.out"
 gcov_out_ext="cov.txt"
@@ -22,9 +21,9 @@ gcov_out_ext="cov.txt"
 unit_tests="unittest1 unittest2 unittest3 unittest4"
 
 for ut in $unit_tests; do
-    rm dominion.o *.gcov *.gcda *.gcno
+    rm dominion.o *.gcov *.gcda *.gcno 2>/dev/null
     ut_out="$test_out_dir/$ut$t_out_ext"
-    make "$ut"
+    make "$ut" 1>/dev/null 2>/dev/null
 
     echo "running $ut"
     timeinfo="$(time ( ./$ut >> $ut_out ) 2>&1 1>/dev/null )"
@@ -46,6 +45,8 @@ for ut in $unit_tests; do
 
     echo
 done
+echo
+echo
 # -----------------------------------------------------------------------------
 
 
@@ -54,9 +55,9 @@ done
 card_tests="cardtest1 cardtest2 cardtest3 cardtest4"
 
 for ct in $card_tests; do
-    rm dominion.o *.gcov *.gcda *.gcno
+    rm dominion.o *.gcov *.gcda *.gcno 2>/dev/null
     ct_out="$test_out_dir/$ct$t_out_ext"
-    make "$ct"
+    make "$ct" 1>/dev/null 2>/dev/null
 
     echo "running $ct"
     timeinfo="$(time ( ./$ct >> $ct_out ) 2>&1 1>/dev/null )"
@@ -78,6 +79,8 @@ for ct in $card_tests; do
 
     echo
 done
+echo
+echo
 # -----------------------------------------------------------------------------
 
 
@@ -86,9 +89,9 @@ done
 card_tests="randomtestadventurer randomtestcard1 randomtestcard2"
 
 for rt in $card_tests; do
-    rm dominion.o *.gcov *.gcda *.gcno
+    rm dominion.o *.gcov *.gcda *.gcno 2>/dev/null
     rt_out="$test_out_dir/$rt$t_out_ext"
-    make "$rt"
+    make "$rt" 1>/dev/null 2>/dev/null
 
     echo "running $rt"
     timeinfo="$(time ( ./$rt >> $rt_out ) 2>&1 1>/dev/null )"
@@ -110,4 +113,6 @@ for rt in $card_tests; do
 
     echo
 done
+echo
+echo
 # -----------------------------------------------------------------------------
